@@ -1,0 +1,77 @@
+@use 'sass:math';
+@use 'tokens' as *;
+
+// Centered 1280 content column inside the 1440 canvas (80px gutters are margin).
+// Responsive padding kicks in only once the viewport drops below the content width.
+@mixin content-column {
+  width: 100%;
+  max-width: $content-width;
+  margin-inline: auto;
+
+  @media (max-width: ($content-width + 2 * $gutter)) {
+    padding-inline: clamp(20px, 5vw, #{$gutter});
+  }
+}
+
+// Section label: 32 / 600 uppercase #0B4AC2 (case-study sections).
+@mixin section-label {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $accent;
+}
+
+// Phase label: 38 / 700 uppercase #12141A.
+@mixin phase-label {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: $text-12141a;
+}
+
+@mixin button-reset {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+// Convert a Figma px value to rem against a 16px root (keeps numbers readable).
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+// ---- Responsive breakpoint helpers ----
+@mixin lg {
+  @media (max-width: $bp-lg) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $bp-md) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $bp-sm) {
+    @content;
+  }
+}
+
+// Section label pills shrink to the compact hero-pill size on phones.
+@mixin pill-mobile {
+  @include mobile {
+    height: 30px;
+    padding: 0 14px;
+    font-size: 12px;
+    line-height: 1;
+  }
+}

@@ -1,0 +1,178 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include content-column;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 118px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 24px;
+  border: 1px solid $bright-blue;
+  border-radius: 9999px;
+  background: $white;
+  font-family: var(--font-geist);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28.6px;
+  color: $bright-blue;
+
+  @include pill-mobile;
+}
+
+.heading {
+  margin-top: 28px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 52px;
+  letter-spacing: -0.8px;
+  color: $text-12141a;
+}
+
+.steps {
+  width: 975px;
+  margin: 0 auto;
+  position: relative;
+  isolation: isolate;
+}
+
+.step {
+  display: flex;
+  gap: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.rail {
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+
+// continuous timeline track + scroll-driven fill (positioned by JS)
+.track,
+.fill {
+  position: absolute;
+  left: 26px;
+  width: 4px;
+  border-radius: 2px;
+  z-index: 0;
+}
+
+.track {
+  background: #d4d9e3;
+}
+
+.fill {
+  height: 0;
+  background: #2394ff;
+}
+
+.content {
+  width: 863px;
+  padding-bottom: 88px;
+}
+
+.stepTitle {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 41.6px;
+  color: $black;
+}
+
+.stepBody {
+  margin-top: 12px;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 32px;
+  color: $text-404a64;
+}
+
+.step:last-child .content {
+  padding-bottom: 0;
+}
+
+@include tablet {
+  .header {
+    margin-bottom: 64px;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
+
+  .steps {
+    width: 100%;
+  }
+
+  .step {
+    gap: 28px;
+  }
+
+  .content {
+    width: auto;
+    flex: 1;
+    padding-bottom: 48px;
+  }
+
+  .stepTitle {
+    font-size: 26px;
+  }
+
+  .stepBody {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+}
+
+@include mobile {
+  .rail {
+    width: 40px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .track,
+  .fill {
+    left: 18px;
+  }
+
+  .step {
+    gap: 18px;
+  }
+
+  .stepTitle {
+    font-size: 22px;
+  }
+
+  .stepBody {
+    font-size: 16px;
+  }
+}

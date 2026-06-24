@@ -1,0 +1,983 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+$cs-accent: #0b4ac2;
+$cs-ink: #12141a;
+$cs-body: #323848;
+$cs-muted: #404a64;
+$cs-meta: #4e5c7b;
+
+.page {
+  background: #ffffff;
+  padding-bottom: 120px;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1286px;
+  margin-inline: auto;
+
+  @media (max-width: 1366px) {
+    padding-inline: clamp(20px, 5vw, 77px);
+  }
+}
+
+.section {
+  margin-top: clamp(72px, 9vw, 150px);
+}
+
+// ---- shared text styles ----
+.label {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
+  color: $cs-accent;
+
+  @include tablet {
+    font-size: 24px;
+  }
+}
+
+.body {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.4;
+  color: $cs-body;
+  white-space: pre-line;
+
+  @include tablet {
+    font-size: 18px;
+  }
+}
+
+// label-left / body-right two-column block
+.split {
+  display: flex;
+  gap: 40px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.splitLabel {
+  width: 268px;
+  flex-shrink: 0;
+
+  @include tablet {
+    width: 100%;
+  }
+}
+
+.splitBody {
+  flex: 1;
+}
+
+// ---- hero ----
+.heroPhones {
+  display: flex;
+  gap: 26px;
+  justify-content: space-between;
+
+  @include tablet {
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+}
+
+.heroPhones img {
+  width: calc((100% - 4 * 26px) / 5);
+  height: auto;
+  display: block;
+
+  @include tablet {
+    width: 38%;
+    flex-shrink: 0;
+  }
+}
+
+.heroText {
+  margin-top: 88px;
+  display: flex;
+  gap: 80px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 48px;
+  }
+}
+
+.heroMain {
+  flex: 1;
+}
+
+.kicker {
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #000000;
+
+  @include tablet {
+    font-size: 24px;
+  }
+}
+
+.heroSub {
+  margin-top: 16px;
+  font-family: var(--font-inter);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 34px;
+  color: $cs-meta;
+
+  @include tablet {
+    font-size: 22px;
+  }
+}
+
+.heroHeadline {
+  margin-top: 28px;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 58px;
+  line-height: 1.15;
+  color: $cs-ink;
+
+  @include tablet {
+    font-size: 34px;
+  }
+}
+
+.heroOverview {
+  margin-top: 32px;
+  max-width: 811px;
+}
+
+.heroMeta {
+  width: 372px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include tablet {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px 48px;
+  }
+}
+
+.metaLabel {
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 24px;
+  color: #000000;
+
+  @include tablet {
+    font-size: 18px;
+  }
+}
+
+.metaValue {
+  margin-top: 8px;
+  font-family: var(--font-inter);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  color: $cs-meta;
+
+  @include tablet {
+    font-size: 16px;
+  }
+}
+
+// ---- two-column problem/solution ----
+.cols2 {
+  display: flex;
+  gap: 112px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 48px;
+  }
+}
+
+.col {
+  flex: 1;
+}
+
+.colBody {
+  margin-top: 32px;
+}
+
+.chips {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.chip {
+  padding: 11px 20px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(214, 222, 235, 0.7);
+  box-shadow: 0 4px 18px rgba(18, 20, 26, 0.04);
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 14px;
+  color: #121212;
+}
+
+.chipBlue {
+  background: linear-gradient(135deg, #b7e2ff, #85d1ff);
+  border-color: transparent;
+}
+
+// ---- phase divider ----
+.phase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: clamp(80px, 10vw, 160px);
+}
+
+.phase span {
+  height: 1px;
+  width: 69px;
+  background: $cs-ink;
+}
+
+.phase h2 {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: 0.02em;
+  color: $cs-ink;
+  text-transform: uppercase;
+
+  @include tablet {
+    font-size: 26px;
+  }
+
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+// ---- process timeline (5 col) ----
+.process {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  position: relative;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 24px;
+  }
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.procCol {
+  position: relative;
+
+  @include mobile {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    column-gap: 20px;
+    align-items: start;
+    padding-bottom: 40px;
+  }
+}
+
+.procDot {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e3e6ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+
+  @include mobile {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+.procPie {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: conic-gradient(#0560fa var(--fill, 0%), #e7edf7 0);
+}
+
+.procLine {
+  position: absolute;
+  top: 28px;
+  left: 56px;
+  right: -24px;
+  height: 1px;
+  background: #d1d1d1;
+
+  .procCol:last-child & {
+    display: none;
+  }
+
+  @include tablet {
+    display: none;
+  }
+
+  @include mobile {
+    display: block;
+    top: 56px;
+    bottom: 0;
+    left: 27px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+}
+
+.procTitle {
+  margin-top: 24px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 20px;
+  color: $cs-ink;
+
+  @include mobile {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: 0;
+    align-self: center;
+  }
+}
+
+.procList {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include mobile {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.procList li {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 14px;
+  color: $cs-ink;
+}
+
+// ---- takeaways 3 col ----
+.takeaways {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.takeaway {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.45;
+  color: $cs-muted;
+
+  @include tablet {
+    font-size: 18px;
+  }
+}
+
+// ---- persona card ----
+.personaCard {
+  margin-top: 56px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-radius: 24px;
+  padding: 56px;
+  display: grid;
+  grid-template-columns: 300px 1fr 1fr;
+  gap: 48px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    padding: 32px;
+    gap: 32px;
+  }
+}
+
+.personaId {
+  text-align: center;
+}
+
+.personaName {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 32px;
+  color: $cs-accent;
+}
+
+.personaRole {
+  margin-top: 6px;
+  font-family: var(--font-brand);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  color: $cs-muted;
+}
+
+.personaPhoto {
+  width: 259px;
+  height: 259px;
+  max-width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 28px auto;
+}
+
+.personaMeta {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 19px;
+  color: $cs-body;
+  line-height: 1.7;
+}
+
+.personaBlockTitle {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 24px;
+  color: $cs-accent;
+  margin-bottom: 16px;
+}
+
+.feelings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.feelPill {
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #edf8ff;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 16px;
+  color: $cs-accent;
+}
+
+.personaList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.personaList li {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #384054;
+  padding-left: 18px;
+  position: relative;
+}
+
+.personaList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $cs-accent;
+}
+
+.personaGroup + .personaGroup {
+  margin-top: 32px;
+}
+
+// ---- galleries ----
+.galleryHeader {
+  margin-bottom: 56px;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid4 img,
+.grid6 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.hifi {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.hifiRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  @include tablet {
+    flex-direction: column;
+  }
+}
+
+.hifiRow img {
+  min-width: 0;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 14px;
+}
+
+// ---- prototype button ----
+.protoBtn {
+  margin: 56px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 655px;
+  max-width: 100%;
+  height: 72px;
+  border: 1px solid #eceef2;
+  border-radius: 8px;
+  background: #ffffff;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 24px;
+  color: $cs-accent;
+  transition: border-color 0.2s $ease-out, transform 0.2s $ease-out;
+
+  &:hover {
+    border-color: $cs-accent;
+    transform: translateY(-1px);
+  }
+}
+
+// ---- before / after ----
+.beforeAfter {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  justify-items: center;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.baCol {
+  text-align: center;
+  max-width: 334px;
+}
+
+.baLabel {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 24px;
+  color: $cs-ink;
+  margin-bottom: 24px;
+}
+
+.baCol img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+.baCaption {
+  margin-top: 40px;
+  text-align: center;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.45;
+  color: $cs-muted;
+
+  @include tablet {
+    font-size: 18px;
+  }
+}
+
+.keyTerm {
+  font-weight: 700;
+  color: $cs-ink;
+}
+
+// ---- hero meta card variant (E-Split / Orange / KeyFund) ----
+.heroMetaCard {
+  background: #fff7f7;
+  border: 1px solid #d4d9e3;
+  border-radius: 16px;
+  padding: 40px;
+}
+
+// ---- "who I was designing for" / panel cards ----
+.panel {
+  margin-top: 56px;
+  border-radius: 24px;
+  padding: 48px;
+
+  @include tablet {
+    padding: 28px;
+  }
+}
+
+.panelLight {
+  background: #edf8ff;
+}
+
+.panelWhite {
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+}
+
+.panelTitle {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 32px;
+  color: $cs-accent;
+  margin-bottom: 40px;
+
+  @include tablet {
+    font-size: 24px;
+  }
+}
+
+.cards3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dfCard {
+  background: #edf8ff;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.iconCircle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #eceef2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $cs-accent;
+  margin-bottom: 28px;
+}
+
+.cardTitleSm {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 22px;
+  color: $cs-ink;
+  margin-bottom: 12px;
+}
+
+.cardBodySm {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.4;
+  color: $cs-muted;
+
+  @include tablet {
+    font-size: 18px;
+  }
+}
+
+// takeaway columns (icon + text, no card)
+.tpItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.quote {
+  margin-top: 40px;
+  text-align: center;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.5;
+  color: $cs-muted;
+
+  span {
+    display: block;
+    margin-top: 24px;
+  }
+}
+
+// ---- E-Split week timeline ----
+.weeks {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.weekCol {
+  text-align: center;
+}
+
+.weekPhase {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 17px;
+  color: $cs-ink;
+  margin-bottom: 16px;
+}
+
+.weekPill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 10px;
+  border-radius: 9999px;
+  background: #b7e2ff;
+}
+
+.weekNum {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0560fa;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.weekLabel {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 15px;
+  color: #000;
+}
+
+.weekTime {
+  margin-top: 12px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 15px;
+  color: $cs-ink;
+}
+
+// ---- annotated hi-fi rows (phone + text) ----
+.annRow {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  margin-top: 80px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 48px;
+  }
+}
+
+.annReverse {
+  flex-direction: row-reverse;
+
+  @include tablet {
+    flex-direction: column;
+  }
+}
+
+.annPhones {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.annPhones img {
+  width: 240px;
+  height: auto;
+  display: block;
+
+  @include tablet {
+    width: 45%;
+  }
+}
+
+.annText {
+  flex: 1;
+}
+
+.annTitle {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 27px;
+  color: #1c1d1e;
+  margin-bottom: 16px;
+}
+
+.annDesc {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: $cs-body;
+}
+
+// ---- stacked full-width screens (Orange hi-fi / old screens) ----
+.stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 56px;
+}
+
+.stacked img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+}
+
+.centerTitle {
+  text-align: center;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 32px;
+  color: $cs-ink;
+
+  @include tablet {
+    font-size: 24px;
+  }
+}
+
+// ---- generic phone gallery rows ----
+.galleryFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.galleryFlex img {
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+// ---- Orange HRM problem / solution cards ----
+.ohCard {
+  background: #ffffff;
+  border: 1px solid #eceef2;
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.ohChip {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: #edf8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0560fa;
+  margin-bottom: 20px;
+}
+
+.solCard {
+  text-align: left;
+}
+
+.solImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.heroSolo {
+  width: 100%;
+  height: auto;
+  display: block;
+}

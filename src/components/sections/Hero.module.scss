@@ -1,0 +1,152 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 109px;
+
+  @include tablet {
+    padding-top: 64px;
+    padding-inline: 24px;
+  }
+
+  @include mobile {
+    padding-top: 40px;
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 23px;
+  border: 1px solid $bright-blue;
+  border-radius: 9999px;
+  background: $white;
+  font-family: var(--font-geist);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28.6px;
+  color: $bright-blue;
+
+  @include mobile {
+    height: 30px;
+    padding: 0 14px;
+    font-size: 12px;
+    line-height: 1;
+  }
+}
+
+.copy {
+  margin-top: 32px;
+  width: 1064px;
+  max-width: 100%;
+
+  @include tablet {
+    margin-top: 24px;
+  }
+
+  @include mobile {
+    margin-top: 14px;
+  }
+}
+
+.headline {
+  font-family: var(--font-geist);
+  font-weight: 500;
+  font-size: 88px;
+  line-height: 114.4px;
+  letter-spacing: -1.76px;
+  color: $text-323848;
+
+  @include tablet {
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+
+  @include mobile {
+    font-size: 40px;
+    letter-spacing: -0.8px;
+  }
+}
+
+.paragraph {
+  margin-top: 32px;
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31.47px;
+  letter-spacing: -0.52px;
+  color: $text-4e5c7b;
+
+  @include tablet {
+    font-size: 19px;
+    line-height: 1.5;
+  }
+
+  @include mobile {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+}
+
+.buttons {
+  margin-top: 64px;
+  display: flex;
+  gap: 24px;
+
+  @include tablet {
+    margin-top: 40px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 200px;
+  height: 64px;
+  border-radius: 8px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.4px;
+  transition: transform 0.2s $ease-out, opacity 0.2s $ease-out;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.btnPrimary {
+  background: $black;
+  color: $white;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btnSecondary {
+  background: $surface-eceef2;
+  color: $text-12141a;
+
+  &:hover {
+    background: darken($surface-eceef2, 3%);
+  }
+}

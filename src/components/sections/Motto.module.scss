@@ -1,0 +1,45 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.motto {
+  @include content-column;
+  text-align: center;
+}
+
+.label {
+  font-family: var(--font-lato);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+  color: $text-4e5c7b;
+
+  @include tablet {
+    font-size: 28px;
+  }
+
+  @include mobile {
+    font-size: 22px;
+  }
+}
+
+.quote {
+  margin-top: 40px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 104px;
+  letter-spacing: -1.6px;
+  color: $black;
+
+  @include tablet {
+    margin-top: 24px;
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+
+  @include mobile {
+    font-size: 32px;
+    letter-spacing: -0.6px;
+  }
+}

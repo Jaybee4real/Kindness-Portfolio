@@ -1,0 +1,270 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 136px;
+  background: rgba($page-bg, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #d4d9e3;
+}
+
+.inner {
+  @include content-column;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: #d9d9d9;
+}
+
+.brandName {
+  font-family: var(--font-geist);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: $text-1c1d1e;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.link {
+  font-family: var(--font-geist);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: $text-1c1d1e;
+  transition: color 0.2s $ease-out;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+// ---- mobile hamburger ----
+.burger {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: $text-1c1d1e;
+    transition: transform 0.35s $ease-out, opacity 0.2s $ease-out,
+      width 0.3s $ease-out;
+
+    &:nth-child(1) {
+      width: 24px;
+    }
+    &:nth-child(2) {
+      width: 17px;
+    }
+    &:nth-child(3) {
+      width: 24px;
+    }
+  }
+}
+
+.burgerOpen span {
+  &:nth-child(1) {
+    width: 24px;
+    transform: translateY(8px) rotate(45deg);
+  }
+  &:nth-child(2) {
+    opacity: 0;
+  }
+  &:nth-child(3) {
+    width: 24px;
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+// ---- mobile dropdown menu ----
+.backdrop {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 72px;
+  bottom: 0;
+  background: rgba(18, 20, 26, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s $ease-out, visibility 0.3s;
+}
+
+.backdropOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 12px 22px 24px;
+  background: rgba($page-bg, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #d4d9e3;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 30px 60px rgba(18, 20, 26, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-14px);
+  transition: opacity 0.3s $ease-out, transform 0.4s $ease-out, visibility 0.3s;
+}
+
+.mobileMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 6px;
+  font-family: var(--font-geist);
+  font-weight: 500;
+  font-size: 20px;
+  color: $text-1c1d1e;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s $ease-out, transform 0.4s $ease-out, color 0.2s;
+
+  svg {
+    opacity: 0.45;
+    transition: transform 0.3s $ease-out, opacity 0.2s;
+  }
+
+  &:hover,
+  &:active {
+    color: $accent;
+
+    svg {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.mobileMenuOpen .mobileLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileCta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  height: 54px;
+  border-radius: 14px;
+  background: $text-12141a;
+  color: $white;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 16px;
+  transition: transform 0.2s $ease-out;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.mobileSocials {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 20px;
+
+  a {
+    font-family: var(--font-geist);
+    font-size: 14px;
+    color: $text-4e5c7b;
+    transition: color 0.2s $ease-out;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+@include tablet {
+  .navbar {
+    height: 72px;
+  }
+
+  .navOpen {
+    box-shadow: 0 8px 30px rgba(18, 20, 26, 0.06);
+  }
+
+  .logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand {
+    gap: 14px;
+  }
+
+  .brandName {
+    font-size: 18px;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .backdrop {
+    display: block;
+  }
+
+  .mobileMenu {
+    display: block;
+  }
+}

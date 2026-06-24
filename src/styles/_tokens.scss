@@ -1,0 +1,63 @@
+// Design tokens — derived 1:1 from the Figma "PORTFOLIO" section.
+
+// ---- Color: surfaces ----
+$page-bg: #f8fbff;
+$white: #ffffff;
+$black: #000000;
+$surface-edf8ff: #edf8ff;
+$surface-fff7ed: #fff7ed;
+$surface-ffedd4: #ffedd4;
+$surface-eceef2: #eceef2;
+$dark-card: #091c2e;
+$ink-151515: #151515;
+
+// ---- Color: text ramp ----
+$text-121: #121212;
+$text-12141a: #12141a;
+$text-1c1d1e: #1c1d1e;
+$text-323848: #323848;
+$text-404a64: #404a64;
+$text-4e5c7b: #4e5c7b;
+$text-3d3d3d: #3d3d3d;
+$text-4f4f4f: #4f4f4f;
+$text-5d5d5d: #5d5d5d;
+
+// ---- Color: accents ----
+$accent: #0b4ac2; // section labels
+$link: #0560fa;
+$bright-blue: #0b74ff; // "Available for work" / links
+$blue-168de1: #168de1;
+
+// ---- Color: brand families ----
+$green: #12715b;
+$orange: #ff7b1d;
+$orange-9237: #ff9237;
+$orange-d8a8: #ffd8a8;
+
+// ---- Gradients ----
+$grad-button-blue: linear-gradient(180deg, #0560fa, #0b4ac2);
+$grad-button-orange: linear-gradient(180deg, #ff7b1d, #f05706);
+$grad-hero-pastel: linear-gradient(135deg, #fde7e9, #edf8ff);
+$grad-service-teal: linear-gradient(135deg, #125d78, #00b4d8);
+$grad-service-purple: linear-gradient(135deg, #602aad, #8245e2);
+$grad-service-blue: linear-gradient(135deg, #0b4ac2, #0b74ff);
+
+// ---- Layout ----
+$canvas-width: 1440px;
+$content-width: 1280px;
+$gutter: 80px;
+
+// ---- Breakpoints ----
+$bp-lg: 1100px; // tighten desktop
+$bp-md: 820px; // tablet → start stacking
+$bp-sm: 560px; // phone
+
+// ---- Radii ----
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-xl: 28px;
+$radius-pill: 999px;
+
+// ---- Easing / motion ----
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);

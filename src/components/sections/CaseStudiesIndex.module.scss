@@ -1,0 +1,57 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.wrap {
+  @include content-column;
+  padding-top: clamp(48px, 7vw, 112px);
+  padding-bottom: clamp(64px, 8vw, 140px);
+}
+
+.header {
+  max-width: 760px;
+  margin-bottom: clamp(48px, 6vw, 96px);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 18px;
+  border: 1px solid $bright-blue;
+  border-radius: 9999px;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  color: $bright-blue;
+
+  @include pill-mobile;
+}
+
+.heading {
+  margin-top: 24px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: $black;
+
+  @include mobile {
+    margin-top: 16px;
+  }
+}
+
+.intro {
+  margin-top: 24px;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.5;
+  color: $text-3d3d3d;
+
+  @include tablet {
+    font-size: 18px;
+    margin-top: 16px;
+  }
+}

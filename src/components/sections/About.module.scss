@@ -1,0 +1,142 @@
+@use '../../styles/tokens' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  @include content-column;
+  display: flex;
+  gap: 32px;
+
+  @include tablet {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+// ---- dark card ----
+.darkCard {
+  width: 405px;
+  flex-shrink: 0;
+  height: 647px;
+
+  @include tablet {
+    width: 100%;
+    height: auto;
+    gap: 48px;
+    padding: 32px;
+  }
+  background: $text-12141a;
+  border-radius: 16px;
+  padding: 32px 30px 69px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.darkTitle {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36.4px;
+  letter-spacing: -0.56px;
+  color: $white;
+}
+
+.darkBio {
+  margin-top: 24px;
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20.8px;
+  color: $surface-eceef2;
+}
+
+.aboutPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  background: $white;
+  border-radius: 8px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20.8px;
+  letter-spacing: -0.32px;
+  color: $black;
+}
+
+// ---- stats grid ----
+.stats {
+  width: 844px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @include tablet {
+    width: 100%;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  height: 313px;
+  background: $white;
+  border-radius: 16px;
+  padding: 32px 38px 32px 32px;
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    height: auto;
+    min-height: 240px;
+    padding: 28px;
+  }
+
+  @include mobile {
+    min-height: 0;
+    padding: 24px;
+  }
+}
+
+.statTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.statNumber {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 60px;
+  letter-spacing: -1.28px;
+  color: $black;
+}
+
+.statLabel {
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: $text-4f4f4f;
+  white-space: nowrap;
+}
+
+.statDivider {
+  height: 1px;
+  background: #e7e7e7;
+  margin-top: 24px;
+}
+
+.statDesc {
+  margin-top: 24px;
+  font-family: var(--font-brand);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+  color: $text-5d5d5d;
+}
