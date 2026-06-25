@@ -175,7 +175,7 @@ export default function ESplitCaseStudy() {
           </p>
         </Split>
         <Reveal className={styles.galleryFlex} as="div">
-          {[1, 2, 3].map((n) => (
+          {[1, 2, 3, 4, 5, 6].map((n) => (
             <img key={n} src={`/images/work/${SLUG}/midfi-${n}.webp`} alt="" style={{ height: 460 }} />
           ))}
         </Reveal>

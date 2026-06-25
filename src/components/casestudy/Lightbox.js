@@ -6,10 +6,36 @@ import styles from './Lightbox.module.scss';
 const isWireframe = (img) => /midfi-/.test(img.getAttribute('src') || '');
 const isEligible = (img) => img.tagName === 'IMG' && !isWireframe(img);
 
+const PRETTY = {
+  'hifi-home': 'Homepage',
+  'hifi-split': 'Split Bill Screen',
+  'hifi-details': 'Split Details Screen',
+  'hifi-hero-1': 'Hi-Fi Overview',
+  'hifi-hero-2': 'Hi-Fi Overview',
+  'test-before': 'Before Testing',
+  'test-after': 'After Testing',
+  persona: 'User Persona',
+  hero: 'Overview',
+  hifi: 'Hi-Fi Screen',
+  main: 'Screen',
+  proto: 'Prototype',
+  sol: 'Solution',
+  old: 'Old Screen',
+};
+
+function titleFor(src) {
+  const file = (src.split('/').pop() || '').replace(/\.\w+$/, '');
+  if (PRETTY[file]) return PRETTY[file];
+  const match = file.match(/^([a-z-]+?)-(\d+)$/);
+  if (match && PRETTY[match[1]]) return `${PRETTY[match[1]]} ${match[2]}`;
+  return file.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 export default function Lightbox() {
   const [items, setItems] = useState([]);
   const [index, setIndex] = useState(-1);
-  const [zoomed, setZoomed] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [rotation, setRotation] = useState(0);
   const pan = useRef({ x: 0, y: 0 });
   const drag = useRef(null);
   const imgRef = useRef(null);
@@ -18,23 +44,24 @@ export default function Lightbox() {
   const applyTransform = useCallback(() => {
     const node = imgRef.current;
     if (node) {
-      node.style.transform = `translate(${pan.current.x}px, ${pan.current.y}px) scale(${zoomed ? 2 : 1})`;
+      node.style.transform = `translate(${pan.current.x}px, ${pan.current.y}px) scale(${scale}) rotate(${rotation}deg)`;
     }
-  }, [zoomed]);
+  }, [scale, rotation]);
 
-  const reset = () => {
+  const resetView = () => {
     pan.current = { x: 0, y: 0 };
-    setZoomed(false);
+    setScale(1);
+    setRotation(0);
   };
 
   const close = useCallback(() => {
     setIndex(-1);
-    reset();
+    resetView();
   }, []);
 
   const go = useCallback(
     (direction) => {
-      reset();
+      resetView();
       setIndex((current) => {
         const count = items.length;
         if (!count) return -1;
@@ -54,9 +81,14 @@ export default function Lightbox() {
       const img = event.target.closest ? event.target.closest('img') : null;
       if (!img || !root.contains(img) || !isEligible(img)) return;
       const all = [...root.querySelectorAll('img')].filter(isEligible);
-      setItems(all.map((node) => ({ src: node.currentSrc || node.src, alt: node.alt || '' })));
+      setItems(
+        all.map((node) => ({
+          src: node.currentSrc || node.src,
+          title: titleFor(node.currentSrc || node.src),
+        }))
+      );
       setIndex(all.indexOf(img));
-      reset();
+      resetView();
     };
     root.addEventListener('click', onClick);
     return () => root.removeEventListener('click', onClick);
@@ -84,14 +116,18 @@ export default function Lightbox() {
   if (!open) return null;
   const item = items[index];
 
-  const toggleZoom = (event) => {
-    event.stopPropagation();
-    pan.current = { x: 0, y: 0 };
-    setZoomed((value) => !value);
+  const zoom = (factor) => {
+    setScale((value) => {
+      const next = Math.min(5, Math.max(1, value * factor));
+      if (next === 1) pan.current = { x: 0, y: 0 };
+      return next;
+    });
   };
 
+  const stop = (event) => event.stopPropagation();
+
   const onPointerDown = (event) => {
-    if (!zoomed) return;
+    if (scale <= 1) return;
     drag.current = {
       x: event.clientX,
       y: event.clientY,
@@ -122,53 +158,78 @@ export default function Lightbox() {
         </svg>
       </button>
 
-      {items.length > 1 && <div className={styles.counter}>{index + 1} / {items.length}</div>}
+      <div className={styles.stage} onClick={stop}>
+        <div className={styles.imageWrap}>
+          <img
+            ref={imgRef}
+            src={item.src}
+            alt={item.title}
+            className={styles.image}
+            style={{ cursor: scale > 1 ? 'grab' : 'zoom-in' }}
+            onClick={() => zoom(scale > 1 ? 0.01 : 1.8)}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+            draggable={false}
+          />
+        </div>
 
-      {items.length > 1 && (
-        <button
-          className={`${styles.nav} ${styles.prev}`}
-          onClick={(event) => {
-            event.stopPropagation();
-            go(-1);
-          }}
-          aria-label="Previous image"
-          type="button"
-        >
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-            <path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-      )}
+        <div className={styles.hub}>
+          <div className={styles.meta}>
+            <span className={styles.title}>{item.title}</span>
+            {items.length > 1 && (
+              <span className={styles.counter}>
+                {index + 1} / {items.length}
+              </span>
+            )}
+          </div>
 
-      <img
-        ref={imgRef}
-        src={item.src}
-        alt={item.alt}
-        className={styles.image}
-        style={{ cursor: zoomed ? 'grab' : 'zoom-in' }}
-        onClick={toggleZoom}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        draggable={false}
-      />
+          <div className={styles.tools}>
+            {items.length > 1 && (
+              <button className={styles.tool} onClick={() => go(-1)} aria-label="Previous" type="button">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            )}
 
-      {items.length > 1 && (
-        <button
-          className={`${styles.nav} ${styles.next}`}
-          onClick={(event) => {
-            event.stopPropagation();
-            go(1);
-          }}
-          aria-label="Next image"
-          type="button"
-        >
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-            <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-      )}
+            <button className={styles.tool} onClick={() => zoom(1 / 1.4)} aria-label="Zoom out" type="button">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                <path d="m20 20-3.5-3.5M8 11h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+            <button className={styles.tool} onClick={() => zoom(1.4)} aria-label="Zoom in" type="button">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                <path d="m20 20-3.5-3.5M11 8v6M8 11h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+
+            <button className={styles.tool} onClick={() => setRotation((deg) => deg - 90)} aria-label="Rotate left" type="button">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M3 8a9 9 0 1 1-1.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 4v4h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button className={styles.tool} onClick={() => setRotation((deg) => deg + 90)} aria-label="Rotate right" type="button">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M21 8a9 9 0 1 0 1.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M21 4v4h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            {items.length > 1 && (
+              <button className={styles.tool} onClick={() => go(1)} aria-label="Next" type="button">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

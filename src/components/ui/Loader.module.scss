@@ -6,114 +6,113 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(130% 120% at 50% -10%, #16151d 0%, #0a0a0e 65%);
-  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .done {
   opacity: 0;
-  transform: scale(1.03);
   pointer-events: none;
 }
 
-.glow {
+.bgBlack,
+.bgGradient,
+.bgSite {
   position: absolute;
-  top: 38%;
-  left: 50%;
-  width: 620px;
-  height: 620px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(183, 226, 255, 0.22),
-    rgba(255, 216, 227, 0.14) 42%,
-    transparent 68%
-  );
-  filter: blur(8px);
-  animation: pulse 3.2s ease-in-out infinite;
+  inset: 0;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.08);
-  }
+.bgBlack {
+  background: #060709;
+}
+
+.bgGradient {
+  background: linear-gradient(135deg, #b7e2ff, #ffd8e3 50%, #e0d8fc);
+}
+
+.bgSite {
+  background: #f8fbff;
 }
 
 .inner {
   position: relative;
-  width: min(440px, 82vw);
+  z-index: 2;
   text-align: center;
 }
 
-.kicker {
-  display: inline-block;
-  font-family: var(--font-geist);
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
+.ring {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  margin: 0 auto;
+  animation: float 3s ease-in-out infinite;
 }
 
-.name {
-  margin-top: 18px;
-  font-family: var(--font-brand);
-  font-weight: 600;
-  font-size: clamp(30px, 6vw, 48px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  background: linear-gradient(110deg, #b7e2ff, #ffd8e3, #e0d8fc);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: sheen 3s linear infinite;
-}
-
-@keyframes sheen {
-  to {
-    background-position: 200% center;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
   }
 }
 
+.ringSvg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 4px 16px rgba(124, 192, 255, 0.35));
+}
+
+.ringTrack {
+  fill: none;
+  stroke: rgba(140, 146, 162, 0.32);
+  stroke-width: 3;
+}
+
+.ringFill {
+  fill: none;
+  stroke: url(#loaderRing);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.2s linear;
+}
+
+.avatar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+}
+
+.name {
+  margin-top: 32px;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: clamp(26px, 5vw, 38px);
+  letter-spacing: -0.02em;
+  transition: color 0.15s linear;
+}
+
 .role {
-  margin-top: 12px;
+  margin-top: 10px;
   font-family: var(--font-inter);
   font-style: italic;
   font-weight: 400;
-  font-size: 17px;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.barWrap {
-  margin: 38px auto 0;
-  width: 100%;
-  height: 4px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
-
-.bar {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(110deg, #b7e2ff, #ffd8e3, #e0d8fc);
-  transition: width 0.18s linear;
+  font-size: 16px;
+  transition: color 0.15s linear;
 }
 
 .pct {
-  margin-top: 16px;
+  margin-top: 24px;
   font-family: var(--font-geist);
   font-weight: 500;
   font-size: 14px;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
+  transition: color 0.15s linear;
 }

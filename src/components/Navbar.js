@@ -29,8 +29,14 @@ export default function Navbar() {
   const close = () => setOpen(false);
 
   return (
-    <header className={`${styles.navbar} ${open ? styles.navOpen : ''}`}>
-      <div className={styles.inner}>
+    <>
+      <div
+        className={`${styles.backdrop} ${open ? styles.backdropOpen : ''}`}
+        onClick={close}
+        aria-hidden
+      />
+      <header className={`${styles.navbar} ${open ? styles.navOpen : ''}`}>
+        <div className={styles.inner}>
         <Link href="/" className={styles.brand} onClick={close}>
           <img
             className={styles.logo}
@@ -63,12 +69,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      <div
-        className={`${styles.backdrop} ${open ? styles.backdropOpen : ''}`}
-        onClick={close}
-        aria-hidden
-      />
-
       <div className={`${styles.mobileMenu} ${open ? styles.mobileMenuOpen : ''}`}>
         <nav className={styles.mobileNav}>
           {NAV_LINKS.map((item, index) => (
@@ -99,6 +99,7 @@ export default function Navbar() {
           ))}
         </div>
       </div>
-    </header>
+      </header>
+    </>
   );
 }

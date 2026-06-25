@@ -5,11 +5,40 @@
   @include content-column;
 }
 
+.flow {
+  display: block;
+}
+
+// ---- horizontal-scroll (pinned) mode ----
+.pin {
+  position: relative;
+  height: calc(330vh / var(--app-scale, 1));
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: calc(100vh / var(--app-scale, 1));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 67px;
+}
+
+.headTop {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
 }
 
 .heading {
@@ -21,7 +50,6 @@
   line-height: 64px;
   letter-spacing: -1.12px;
   color: $black;
-  margin-top: 50px;
 
   @include tablet {
     font-size: 40px;
@@ -31,6 +59,47 @@
   @include mobile {
     font-size: 28px;
     line-height: 1.25;
+  }
+}
+
+.toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid #d4d9e3;
+  border-radius: 9999px;
+  background: $white;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.toggleBtn {
+  width: 44px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: #9aa3b5;
+  cursor: pointer;
+  transition: background 0.2s $ease-out, color 0.2s $ease-out;
+
+  &:hover {
+    color: $bright-blue;
+  }
+}
+
+.toggleActive {
+  background: $bright-blue;
+  color: #ffffff;
+
+  &:hover {
+    color: #ffffff;
   }
 }
 
@@ -67,6 +136,42 @@
 
   @include mobile {
     gap: 40px;
+  }
+}
+
+.listH {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 48px;
+  align-items: center;
+  will-change: transform;
+
+  > * {
+    flex-shrink: 0;
+  }
+}
+
+// Horizontal mode is desktop-only; fall back to the stacked layout below tablet.
+@include tablet {
+  .pin {
+    height: auto;
+  }
+
+  .sticky {
+    position: static;
+    height: auto;
+    overflow: visible;
+    display: block;
+  }
+
+  .listH {
+    flex-direction: column;
+    gap: 56px;
+    transform: none !important;
+
+    > * {
+      flex-shrink: 1;
+    }
   }
 }
 

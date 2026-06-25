@@ -331,12 +331,12 @@ export default function UpdateCaseStudy() {
         </Reveal>
         <Reveal className={styles.beforeAfter} as="div">
           <div className={styles.baCol}>
-            <div className={styles.baLabel}>After Testing</div>
-            <img src="/images/work/update/test-after.webp" alt="After testing" />
-          </div>
-          <div className={styles.baCol}>
             <div className={styles.baLabel}>Before Testing</div>
             <img src="/images/work/update/test-before.webp" alt="Before testing" />
+          </div>
+          <div className={styles.baCol}>
+            <div className={styles.baLabel}>After Testing</div>
+            <img src="/images/work/update/test-after.webp" alt="After testing" />
           </div>
         </Reveal>
         <p className={styles.baCaption}>

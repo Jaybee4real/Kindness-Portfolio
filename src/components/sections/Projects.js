@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import styles from './Projects.module.scss';
 import Reveal from '../ui/Reveal';
 import ProjectCard from './ProjectCard';
@@ -38,19 +41,88 @@ const PROJECTS = [
 ];
 
 export default function Projects() {
-  return (
-    <section className={styles.projects} id="projects">
-      <Reveal className={styles.header}>
-        <h2 className={styles.heading}>
-          A curated collection of websites designed with care
-        </h2>
-        <span className={styles.tag}>Projects</span>
-      </Reveal>
+  const [horizontal, setHorizontal] = useState(false);
+  const pinRef = useRef(null);
+  const stickyRef = useRef(null);
+  const trackRef = useRef(null);
 
-      <div className={styles.list}>
-        {PROJECTS.map((project) => (
-          <ProjectCard key={project.title} project={project} />
-        ))}
+  useEffect(() => {
+    if (!horizontal) return undefined;
+    const pin = pinRef.current;
+    const sticky = stickyRef.current;
+    const track = trackRef.current;
+    if (!pin || !sticky || !track) return undefined;
+    let frame;
+    const loop = () => {
+      if (window.innerWidth > 820) {
+        const rect = pin.getBoundingClientRect();
+        const distance = rect.height - sticky.clientHeight;
+        const progress =
+          distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
+        const max = Math.max(0, track.scrollWidth - track.clientWidth);
+        track.style.transform = `translateX(${(-progress * max).toFixed(1)}px)`;
+      } else {
+        track.style.transform = '';
+      }
+      frame = requestAnimationFrame(loop);
+    };
+    frame = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(frame);
+      if (track) track.style.transform = '';
+    };
+  }, [horizontal]);
+
+  return (
+    <section
+      ref={pinRef}
+      className={`${styles.projects} ${horizontal ? styles.pin : ''}`}
+      id="projects"
+    >
+      <div ref={stickyRef} className={horizontal ? styles.sticky : styles.flow}>
+        <Reveal className={styles.header} as="div">
+          <div className={styles.headTop}>
+            <h2 className={styles.heading}>
+              A curated collection of websites designed with care
+            </h2>
+            <div className={styles.toggle} role="group" aria-label="Projects layout">
+              <button
+                type="button"
+                className={`${styles.toggleBtn} ${!horizontal ? styles.toggleActive : ''}`}
+                onClick={() => setHorizontal(false)}
+                aria-pressed={!horizontal}
+                aria-label="Stacked layout"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="4" width="16" height="6" rx="2" fill="currentColor" />
+                  <rect x="4" y="14" width="16" height="6" rx="2" fill="currentColor" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className={`${styles.toggleBtn} ${horizontal ? styles.toggleActive : ''}`}
+                onClick={() => setHorizontal(true)}
+                aria-pressed={horizontal}
+                aria-label="Horizontal scroll layout"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="4" width="6" height="16" rx="2" fill="currentColor" />
+                  <rect x="14" y="4" width="6" height="16" rx="2" fill="currentColor" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <span className={styles.tag}>Projects</span>
+        </Reveal>
+
+        <div
+          ref={trackRef}
+          className={`${styles.list} ${horizontal ? styles.listH : ''}`}
+        >
+          {PROJECTS.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   );
