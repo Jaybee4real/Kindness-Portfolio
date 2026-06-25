@@ -27,7 +27,7 @@
   // header clear of the sticky navbar so the heading + toggle stay visible.
   top: 0;
   height: calc(100vh / var(--app-scale, 1));
-  padding-top: 136px;
+  // padding-top: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -148,16 +148,22 @@
 }
 
 .listH {
-  flex: 1;
-  min-height: 0;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 56px;
   align-items: center;
   will-change: transform;
-  // start the cards at the content-column left edge, then run full-bleed to the right
-  padding-left: max(clamp(20px, 5vw, 80px), calc((100% - 1280px) / 2));
+  // match the header's content-column left edge exactly: above 1440 it's pure
+  // centring; at/below 1440 the column adds its responsive gutter on top, so the
+  // cards must too (otherwise they sit left of the heading).
+  padding-left: max(0px, calc((100% - #{$content-width}) / 2));
   padding-right: clamp(64px, 9vw, 200px);
+
+  @media (max-width: #{$content-width + 2 * $gutter}) {
+    padding-left: calc(
+      max(0px, (100% - #{$content-width}) / 2) + clamp(20px, 5vw, #{$gutter})
+    );
+  }
 
   > * {
     flex-shrink: 0;
