@@ -1,8 +1,8 @@
 import { LINKS } from './links';
 
-// Set NEXT_PUBLIC_SITE_URL in the deploy environment to the live domain.
+// Override NEXT_PUBLIC_SITE_URL in the deploy environment if the domain changes.
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://kindnessukandu.com'
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://kindness-ukandu.vercel.app'
 ).replace(/\/$/, '');
 
 const DESCRIPTION =
