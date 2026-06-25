@@ -8,6 +8,10 @@ import Motto from '@/components/sections/Motto';
 import DesignProcess from '@/components/sections/DesignProcess';
 import HeroMarquee from '@/components/sections/HeroMarquee';
 
+export const metadata = {
+  alternates: { canonical: '/' },
+};
+
 export default function HomePage() {
   return (
     <>
