@@ -23,9 +23,14 @@
 
 .sticky {
   position: sticky;
-  top: 136px;
-  height: calc(100vh / var(--app-scale, 1) - 136px);
+  // `top` sets where it pins (0 = under the navbar). `padding-top` keeps the
+  // header clear of the sticky navbar so the heading + toggle stay visible.
+  top: 0;
+  height: calc(100vh / var(--app-scale, 1));
+  padding-top: 136px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -143,7 +148,8 @@
 }
 
 .listH {
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 56px;
@@ -216,6 +222,7 @@
   .sticky {
     position: static;
     height: auto;
+    padding-top: 0;
     overflow: visible;
     display: block;
   }

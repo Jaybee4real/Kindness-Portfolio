@@ -58,7 +58,7 @@ const PROJECTS = [
 ];
 
 export default function Projects() {
-  const [horizontal, setHorizontal] = useState(false);
+  const [horizontal, setHorizontal] = useState(true);
   const pinRef = useRef(null);
   const stickyRef = useRef(null);
   const trackRef = useRef(null);
@@ -73,17 +73,9 @@ export default function Projects() {
     const loop = () => {
       if (window.innerWidth > 820) {
         const rect = pin.getBoundingClientRect();
-        const headerH = pin.firstElementChild
-          ? pin.firstElementChild.getBoundingClientRect().height
-          : 0;
-        const stickyH = sticky.getBoundingClientRect().height;
-        const navBottom =
-          document.querySelector('header')?.getBoundingClientRect().bottom || 0;
-        // cards translate only while the sticky is actually pinned below the navbar
-        const start = navBottom - headerH;
-        const range = rect.height - headerH - stickyH;
+        const distance = rect.height - sticky.clientHeight;
         const progress =
-          range > 0 ? Math.min(1, Math.max(0, (start - rect.top) / range)) : 0;
+          distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
         const max = Math.max(0, track.scrollWidth - track.clientWidth);
         track.style.transform = `translateX(${(-progress * max).toFixed(1)}px)`;
       } else {
@@ -104,8 +96,9 @@ export default function Projects() {
       className={`${styles.projects} ${horizontal ? styles.pin : ''}`}
       id="projects"
     >
-      <Reveal className={styles.header} as="div">
-        <div className={styles.headTop}>
+      <div ref={stickyRef} className={horizontal ? styles.sticky : ''}>
+        <Reveal className={styles.header} as="div">
+          <div className={styles.headTop}>
             <h2 className={styles.heading}>
               A curated collection of projects designed with care
             </h2>
@@ -141,19 +134,18 @@ export default function Projects() {
           <span className={styles.tag}>Projects</span>
         </Reveal>
 
-        <div ref={stickyRef} className={horizontal ? styles.sticky : ''}>
-          <div
-            ref={trackRef}
-            className={`${styles.list} ${horizontal ? styles.listH : ''}`}
-          >
-            {PROJECTS.map((project, index) => (
-              <Fragment key={project.title}>
-                <ProjectCard project={project} />
-                {horizontal && index < PROJECTS.length - 1 && <CardDivider />}
-              </Fragment>
-            ))}
-          </div>
+        <div
+          ref={trackRef}
+          className={`${styles.list} ${horizontal ? styles.listH : ''}`}
+        >
+          {PROJECTS.map((project, index) => (
+            <Fragment key={project.title}>
+              <ProjectCard project={project} />
+              {horizontal && index < PROJECTS.length - 1 && <CardDivider />}
+            </Fragment>
+          ))}
         </div>
+      </div>
     </section>
   );
 }
