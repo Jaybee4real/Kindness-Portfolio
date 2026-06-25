@@ -165,7 +165,10 @@ export default function KeyFundCaseStudy() {
               alt=""
               width={532}
               height={MIDFI_HEIGHTS[n]}
-              style={{ height: 340, width: 'auto' }}
+              style={{
+                height: 340,
+                width: Math.round((340 * 532) / MIDFI_HEIGHTS[n]),
+              }}
             />
           ))}
         </Reveal>
@@ -266,7 +269,7 @@ export default function KeyFundCaseStudy() {
               alt=""
               width={388}
               height={786}
-              style={{ height: 360, width: 'auto' }}
+              style={{ height: 360, width: 178 }}
             />
           ))}
         </Reveal>

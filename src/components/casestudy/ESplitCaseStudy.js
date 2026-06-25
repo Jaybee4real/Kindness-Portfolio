@@ -217,16 +217,22 @@ export default function ESplitCaseStudy() {
           </p>
         </Split>
         <Reveal className={styles.galleryFlex} as="div">
-          {[1, 2, 3, 4, 5, 6].map((n) => (
-            <Image
-              key={n}
-              src={`/images/work/${SLUG}/midfi-${n}.webp`}
-              alt=""
-              width={530}
-              height={n <= 3 ? 1227 : n <= 5 ? 1285 : 1294}
-              style={{ height: 460, width: 'auto' }}
-            />
-          ))}
+          {[1, 2, 3, 4, 5, 6].map((n) => {
+            const intrinsicHeight = n <= 3 ? 1227 : n <= 5 ? 1285 : 1294;
+            return (
+              <Image
+                key={n}
+                src={`/images/work/${SLUG}/midfi-${n}.webp`}
+                alt=""
+                width={530}
+                height={intrinsicHeight}
+                style={{
+                  height: 460,
+                  width: Math.round((460 * 530) / intrinsicHeight),
+                }}
+              />
+            );
+          })}
         </Reveal>
       </div>
 
@@ -248,14 +254,14 @@ export default function ESplitCaseStudy() {
             alt=""
             width={568}
             height={1151}
-            style={{ height: 460, width: 'auto' }}
+            style={{ height: 460, width: 227 }}
           />
           <Image
             src={`/images/work/${SLUG}/hifi-hero-2.webp`}
             alt=""
             width={568}
             height={1151}
-            style={{ height: 460, width: 'auto' }}
+            style={{ height: 460, width: 227 }}
           />
         </Reveal>
 
@@ -331,7 +337,7 @@ export default function ESplitCaseStudy() {
               alt=""
               width={332}
               height={670}
-              style={{ height: 380, width: 'auto' }}
+              style={{ height: 380, width: 188 }}
             />
           ))}
         </Reveal>
