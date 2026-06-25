@@ -374,8 +374,8 @@ export default function ESplitCaseStudy() {
             <Image
               src={`/images/work/${SLUG}/test-after.webp`}
               alt="After testing"
-              width={566}
-              height={1146}
+              width={624}
+              height={1428}
             />
           </div>
         </Reveal>
