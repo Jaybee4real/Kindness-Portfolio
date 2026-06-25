@@ -16,18 +16,23 @@
   padding-inline: 0;
 }
 
-// in full-bleed mode the header needs its own centred 1280 column
+// in full-bleed mode the header needs its own centred 1280 column. its vertical
+// footprint is tightened so the heading clears the navbar AND the card still fits
+// below it within the pinned viewport.
 .pin .header {
   @include content-column;
+  margin-bottom: 36px;
+}
+
+.pin .headTop {
+  margin-top: 24px;
 }
 
 .sticky {
   position: sticky;
-  // `top` sets where it pins (0 = under the navbar). `padding-top` keeps the
-  // header clear of the sticky navbar so the heading + toggle stay visible.
-  top: 0;
-  height: calc(100vh / var(--app-scale, 1));
-  // padding-top: 0;
+  // pin just below the 136px navbar so the heading stays fully visible while pinned
+  top: 136px;
+  height: calc(100vh / var(--app-scale, 1) - 136px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -223,6 +228,11 @@
     max-width: none;
     margin-inline: 0;
     padding-inline: 0;
+    margin-bottom: 67px;
+  }
+
+  .pin .headTop {
+    margin-top: 50px;
   }
 
   .sticky {
