@@ -26,8 +26,8 @@
   transform: translate(-50%, -50%);
   background: radial-gradient(
     circle,
-    rgba(35, 148, 255, 0.18),
-    rgba(146, 101, 237, 0.1) 40%,
+    rgba(183, 226, 255, 0.22),
+    rgba(255, 216, 227, 0.14) 42%,
     transparent 68%
   );
   filter: blur(8px);
@@ -69,7 +69,7 @@
   font-size: clamp(30px, 6vw, 48px);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #2394ff, #ff5d9e, #9265ed);
+  background: linear-gradient(110deg, #b7e2ff, #ffd8e3, #e0d8fc);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -104,7 +104,7 @@
 .bar {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #2394ff, #ff5d9e, #9265ed);
+  background: linear-gradient(110deg, #b7e2ff, #ffd8e3, #e0d8fc);
   transition: width 0.18s linear;
 }
 
