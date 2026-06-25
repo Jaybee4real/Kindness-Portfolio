@@ -783,56 +783,101 @@ $cs-meta: #4e5c7b;
   }
 }
 
-// ---- E-Split week timeline ----
+// ---- E-Split week timeline (staircase on desktop) ----
 .weeks {
-  margin-top: 48px;
+  margin-top: 56px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  position: relative;
+  min-height: 348px;
 
   @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include mobile {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-height: 0;
+    margin-top: 40px;
   }
 }
 
 .weekCol {
-  text-align: center;
+  position: relative;
+  height: 348px;
+  border-left: 1px dashed #cdd5e3;
+  padding-left: 16px;
+
+  @include tablet {
+    height: auto;
+    border-left: 2px dashed #cdd5e3;
+    padding: 0 0 30px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
 }
 
 .weekPhase {
+  position: absolute;
+  top: 0;
+  left: 16px;
   font-family: var(--font-brand);
   font-weight: 600;
-  font-size: 17px;
-  color: $cs-ink;
-  margin-bottom: 16px;
+  font-size: 15px;
+  color: $cs-meta;
+
+  @include tablet {
+    position: static;
+    left: auto;
+  }
 }
 
 .weekPill {
-  display: flex;
+  position: absolute;
+  left: 16px;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  height: 54px;
-  padding: 0 10px;
+  gap: 12px;
+  height: 46px;
+  padding-right: 10px;
   border-radius: 9999px;
-  background: #b7e2ff;
+  background: #c4e1ff;
+
+  @include tablet {
+    position: static;
+    left: auto;
+  }
 }
 
-.weekNum {
-  width: 36px;
-  height: 36px;
+.weekCol:nth-child(1) .weekPill {
+  top: 62px;
+}
+.weekCol:nth-child(2) .weekPill {
+  top: 114px;
+}
+.weekCol:nth-child(3) .weekPill {
+  top: 166px;
+}
+.weekCol:nth-child(4) .weekPill {
+  top: 218px;
+}
+.weekCol:nth-child(5) .weekPill {
+  top: 270px;
+}
+
+.weekIcon {
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: #0560fa;
-  color: #fff;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-brand);
-  font-weight: 700;
-  font-size: 15px;
   flex-shrink: 0;
 }
 
@@ -840,15 +885,38 @@ $cs-meta: #4e5c7b;
   font-family: var(--font-brand);
   font-weight: 500;
   font-size: 15px;
-  color: #000;
+  color: #0b1324;
+  white-space: nowrap;
+}
+
+.weekNum {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  color: #0560fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 .weekTime {
-  margin-top: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 16px;
   font-family: var(--font-brand);
   font-weight: 600;
-  font-size: 15px;
-  color: $cs-ink;
+  font-size: 14px;
+  color: $cs-muted;
+
+  @include tablet {
+    position: static;
+    left: auto;
+  }
 }
 
 // ---- annotated hi-fi rows (phone + text) ----

@@ -14,12 +14,53 @@ import {
 
 const SLUG = 'e-split';
 
+const stroke = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.7,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+};
+
+const WEEK_ICONS = {
+  search: (
+    <svg width="20" height="20" viewBox="0 0 24 24" {...stroke}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </svg>
+  ),
+  wireframe: (
+    <svg width="20" height="20" viewBox="0 0 24 24" {...stroke}>
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M3 9h18M9 21V9" />
+    </svg>
+  ),
+  pen: (
+    <svg width="20" height="20" viewBox="0 0 24 24" {...stroke}>
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+    </svg>
+  ),
+  test: (
+    <svg width="20" height="20" viewBox="0 0 24 24" {...stroke}>
+      <path d="M9 3h6M10 3v5L5 18a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-10V3" />
+      <path d="M8.5 14h7" />
+    </svg>
+  ),
+  file: (
+    <svg width="20" height="20" viewBox="0 0 24 24" {...stroke}>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+      <path d="M14 2v6h6M8 13h8M8 17h6" />
+    </svg>
+  ),
+};
+
 const WEEKS = [
-  { phase: 'The Start', step: 'Research', time: '1 Week' },
-  { phase: 'Research', step: 'Wireframe', time: '2 Week' },
-  { phase: 'Work', step: 'Ui Design', time: '3 Week' },
-  { phase: 'Redaction', step: 'Testing', time: '4 Week' },
-  { phase: 'Final', step: 'Case Study', time: '5 Week' },
+  { phase: 'The Start', step: 'Research', time: '1 Week', icon: WEEK_ICONS.search },
+  { phase: 'Research', step: 'Wireframe', time: '2 Week', icon: WEEK_ICONS.wireframe },
+  { phase: 'Work', step: 'Ui Design', time: '3 Week', icon: WEEK_ICONS.pen },
+  { phase: 'Redaction', step: 'Testing', time: '4 Week', icon: WEEK_ICONS.test },
+  { phase: 'Final', step: 'Case Study', time: '5 Week', icon: WEEK_ICONS.file },
 ];
 
 export default function ESplitCaseStudy() {
@@ -55,8 +96,9 @@ export default function ESplitCaseStudy() {
           <div key={week.step} className={styles.weekCol}>
             <div className={styles.weekPhase}>{week.phase}</div>
             <div className={styles.weekPill}>
-              <span className={styles.weekNum}>{index + 1}</span>
+              <span className={styles.weekIcon}>{week.icon}</span>
               <span className={styles.weekLabel}>{week.step}</span>
+              <span className={styles.weekNum}>{index + 1}</span>
             </div>
             <div className={styles.weekTime}>{week.time}</div>
           </div>
