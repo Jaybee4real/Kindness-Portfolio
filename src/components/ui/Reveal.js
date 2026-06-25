@@ -20,17 +20,26 @@ export default function Reveal({
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-    let frame;
+    let revealed = false;
     const check = () => {
+      if (revealed) return;
       const rect = element.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+      if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+        revealed = true;
         setShown(true);
-        return;
+        window.removeEventListener('scroll', check);
+        window.removeEventListener('resize', check);
       }
-      frame = requestAnimationFrame(check);
     };
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    const frame = requestAnimationFrame(check);
     check();
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      window.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 
   const hidden = `translateY(${y}px) scale(${scaleFrom})`;

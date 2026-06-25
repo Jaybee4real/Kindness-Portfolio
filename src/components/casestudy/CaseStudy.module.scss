@@ -612,6 +612,12 @@ $cs-meta: #4e5c7b;
     border-color: $cs-accent;
     transform: translateY(-1px);
   }
+
+  @include mobile {
+    height: 54px;
+    font-size: 16px;
+    margin-top: 40px;
+  }
 }
 
 // ---- before / after ----

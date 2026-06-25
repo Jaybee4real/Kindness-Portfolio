@@ -3,7 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from './Navbar.module.scss';
-import { ArrowUpRight, MailIcon } from './icons/SocialIcons';
+import {
+  ArrowUpRight,
+  MailIcon,
+  LinkedInIcon,
+  BehanceIcon,
+  XIcon,
+} from './icons/SocialIcons';
 import { LINKS } from '@/lib/links';
 
 const NAV_LINKS = [
@@ -13,9 +19,9 @@ const NAV_LINKS = [
 ];
 
 const SOCIALS = [
-  { label: 'LinkedIn', href: LINKS.linkedin },
-  { label: 'Behance', href: LINKS.behance },
-  { label: 'X', href: LINKS.x },
+  { label: 'LinkedIn', href: LINKS.linkedin, Icon: LinkedInIcon },
+  { label: 'Behance', href: LINKS.behance, Icon: BehanceIcon },
+  { label: 'X', href: LINKS.x, Icon: XIcon },
 ];
 
 export default function Navbar() {
@@ -85,9 +91,10 @@ export default function Navbar() {
         </a>
 
         <div className={styles.mobileSocials}>
-          {SOCIALS.map((social) => (
-            <a key={social.label} href={social.href} target="_blank" rel="noreferrer">
-              {social.label}
+          {SOCIALS.map(({ label, href, Icon }) => (
+            <a key={label} href={href} target="_blank" rel="noreferrer">
+              <Icon size={18} color="#0b4ac2" />
+              {label}
             </a>
           ))}
         </div>

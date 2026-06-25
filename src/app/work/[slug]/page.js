@@ -5,6 +5,7 @@ import UpdateCaseStudy from '@/components/casestudy/UpdateCaseStudy';
 import OrangeHrmCaseStudy from '@/components/casestudy/OrangeHrmCaseStudy';
 import ESplitCaseStudy from '@/components/casestudy/ESplitCaseStudy';
 import KeyFundCaseStudy from '@/components/casestudy/KeyFundCaseStudy';
+import Lightbox from '@/components/casestudy/Lightbox';
 import styles from './caseStudy.module.scss';
 
 const CASES = {
@@ -45,9 +46,10 @@ export default async function CaseStudyPage({ params }) {
   return (
     <>
       <Navbar />
-      <main className={styles.customBody}>
+      <main className={styles.customBody} data-lightbox-root>
         <Custom />
       </main>
+      <Lightbox />
       <Footer />
     </>
   );
