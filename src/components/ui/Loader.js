@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import styles from './Loader.module.scss';
 
 const RADIUS = 54;
@@ -59,7 +60,10 @@ export default function Loader() {
   const offset = CIRC * (1 - pct / 100);
 
   return (
-    <div className={`${styles.loader} ${done ? styles.done : ''}`} aria-hidden={done}>
+    <div
+      className={`${styles.loader} ${done ? styles.done : ''}`}
+      aria-hidden={done}
+    >
       <div className={styles.bgBlack} />
       <div className={styles.bgGradient} style={{ opacity: gradientOpacity }} />
       <div className={styles.bgSite} style={{ opacity: siteOpacity }} />
@@ -83,14 +87,20 @@ export default function Loader() {
               style={{ strokeDasharray: CIRC, strokeDashoffset: offset }}
             />
           </svg>
-          <img className={styles.avatar} src="/images/shared/logo.png" alt="Kindness Ukandu" />
+          <Image
+            className={styles.avatar}
+            src="/images/shared/logo.png"
+            alt="Kindness Ukandu"
+            width={224}
+            height={224}
+          />
         </div>
 
         <div className={styles.name} style={{ color: textColor }}>
           Kindness Ukandu
         </div>
         <div className={styles.role} style={{ color: subColor }}>
-          Product Designer — crafting with care
+          UI/UX / Product Designer
         </div>
         <div className={styles.pct} style={{ color: subColor }}>
           {pct}%

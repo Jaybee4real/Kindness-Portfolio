@@ -16,8 +16,8 @@ export default function CaseStudiesIndex() {
         <span className={styles.pill}>Case Studies</span>
         <h1 className={styles.heading}>Selected work, told end to end</h1>
         <p className={styles.intro}>
-          A closer look at the products I&rsquo;ve designed, the problems behind them,
-          the process I followed, and the outcomes they delivered.
+          A closer look at the products I&rsquo;ve designed, the problems behind
+          them, the process I followed, and the outcomes they delivered.
         </p>
       </Reveal>
 

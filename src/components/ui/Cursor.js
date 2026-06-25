@@ -1,13 +1,27 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import styles from './Cursor.module.scss';
 
 const INTERACTIVE = 'a, button, input, textarea, [data-cursor]';
 
+function subscribeFinePointer(callback) {
+  const query = window.matchMedia('(pointer: coarse)');
+  query.addEventListener('change', callback);
+  return () => query.removeEventListener('change', callback);
+}
+
+function useFinePointer() {
+  return useSyncExternalStore(
+    subscribeFinePointer,
+    () => !window.matchMedia('(pointer: coarse)').matches,
+    () => false,
+  );
+}
+
 export default function Cursor() {
-  const [enabled, setEnabled] = useState(false);
+  const enabled = useFinePointer();
   const [hovering, setHovering] = useState(false);
 
   const dotX = useMotionValue(-100);
@@ -16,8 +30,7 @@ export default function Cursor() {
   const ringY = useSpring(dotY, { stiffness: 320, damping: 28, mass: 0.5 });
 
   useEffect(() => {
-    if (window.matchMedia('(pointer: coarse)').matches) return;
-    setEnabled(true);
+    if (!enabled) return undefined;
     document.body.style.cursor = 'none';
 
     const move = (event) => {
@@ -35,7 +48,7 @@ export default function Cursor() {
       document.removeEventListener('mouseover', over);
       document.body.style.cursor = '';
     };
-  }, [dotX, dotY]);
+  }, [enabled, dotX, dotY]);
 
   if (!enabled) return null;
 

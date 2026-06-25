@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../styles/tokens' as *;
 @use '../../styles/mixins' as *;
 
@@ -122,7 +123,9 @@
   font-weight: 600;
   font-size: 20px;
   letter-spacing: -0.4px;
-  transition: transform 0.2s $ease-out, opacity 0.2s $ease-out;
+  transition:
+    transform 0.2s $ease-out,
+    opacity 0.2s $ease-out;
 
   &:hover {
     transform: translateY(-1px);
@@ -150,6 +153,6 @@
   color: $text-12141a;
 
   &:hover {
-    background: darken($surface-eceef2, 3%);
+    background: color.adjust($surface-eceef2, $lightness: -3%);
   }
 }

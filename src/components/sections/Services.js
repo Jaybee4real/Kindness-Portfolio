@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import styles from './Services.module.scss';
 import { MailIcon } from '../icons/SocialIcons';
 import Reveal from '../ui/Reveal';
@@ -48,7 +49,10 @@ export default function Services() {
           distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
         const max = Math.max(0, track.scrollHeight - win.clientHeight);
         track.style.transform = `translateY(${(-progress * max).toFixed(1)}px)`;
-        const index = Math.min(CARDS.length - 1, Math.floor(progress * CARDS.length));
+        const index = Math.min(
+          CARDS.length - 1,
+          Math.floor(progress * CARDS.length),
+        );
         if (index !== lastActive) {
           lastActive = index;
           setActive(index);
@@ -68,7 +72,13 @@ export default function Services() {
             <Reveal as="span" className={styles.tag} y={16} duration={0.6}>
               Projects
             </Reveal>
-            <Reveal as="h2" className={styles.heading} y={28} delay={0.1} duration={0.8}>
+            <Reveal
+              as="h2"
+              className={styles.heading}
+              y={28}
+              delay={0.1}
+              duration={0.8}
+            >
               My Design Solution Are Created To Match Your Vision
             </Reveal>
             <Reveal y={18} delay={0.22}>
@@ -84,9 +94,21 @@ export default function Services() {
               {CARDS.map((card) => (
                 <article key={card.title} className={styles.card}>
                   <div className={styles.cardTop}>
-                    <img className={styles.cardIcon} src={card.icon} alt="" />
+                    <Image
+                      className={styles.cardIcon}
+                      src={card.icon}
+                      alt=""
+                      width={160}
+                      height={160}
+                    />
                     <span className={styles.plus}>
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        aria-hidden
+                      >
                         <path
                           d="M7 1v12M1 7h12"
                           stroke="currentColor"

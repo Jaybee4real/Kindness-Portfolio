@@ -17,8 +17,8 @@ export default function Hero() {
         <Reveal as="p" className={styles.paragraph} y={20} delay={0.18}>
           I&rsquo;m a UI/UX designer living in Lagos. For the last four years,
           I&rsquo;ve been obsessed with figuring out human behavior and using my
-          insights to create meaningful digital experiences. I&rsquo;ve worked on
-          all kinds of projects, websites, and mobile apps, and I have a
+          insights to create meaningful digital experiences. I&rsquo;ve worked
+          on all kinds of projects, websites, and mobile apps, and I have a
           meticulous eye for detail.
         </Reveal>
       </div>

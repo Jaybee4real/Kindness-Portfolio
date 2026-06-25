@@ -56,7 +56,9 @@
   font-weight: 600;
   font-size: 20px;
   letter-spacing: -0.4px;
-  transition: transform 0.2s $ease-out, opacity 0.2s $ease-out;
+  transition:
+    transform 0.2s $ease-out,
+    opacity 0.2s $ease-out;
 
   &:hover {
     opacity: 0.9;
@@ -131,16 +133,30 @@
   padding: 16px 20px;
   border-radius: 8px;
   border: 1px solid #f6f7f9;
-  transition: transform 0.2s $ease-out, box-shadow 0.2s $ease-out;
+  transition:
+    transform 0.2s $ease-out,
+    box-shadow 0.2s $ease-out;
 
   &:nth-child(1) {
     background: linear-gradient(110deg, #edf8ff 0%, #fcf5f7 81%, #f5f4fe 100%);
   }
   &:nth-child(2) {
-    background: linear-gradient(110deg, #fcf5f7 0%, #fcf5f7 62%, #eef8ff 70%, #f5f4fe 100%);
+    background: linear-gradient(
+      110deg,
+      #fcf5f7 0%,
+      #fcf5f7 62%,
+      #eef8ff 70%,
+      #f5f4fe 100%
+    );
   }
   &:nth-child(3) {
-    background: linear-gradient(110deg, #f5f4fe 0%, #f5f4fe 67%, #edf8ff 86%, #fcf5f7 100%);
+    background: linear-gradient(
+      110deg,
+      #f5f4fe 0%,
+      #f5f4fe 67%,
+      #edf8ff 86%,
+      #fcf5f7 100%
+    );
   }
 
   &:hover {
@@ -157,7 +173,12 @@
   height: 50px;
   border-radius: 8px;
   border: 1px solid #f6f7f9;
-  background: linear-gradient(110deg, #b7e2ff 0%, rgba(255, 216, 227, 0.8) 81%, #e0d8fc 100%);
+  background: linear-gradient(
+    110deg,
+    #b7e2ff 0%,
+    rgba(255, 216, 227, 0.8) 81%,
+    #e0d8fc 100%
+  );
   flex-shrink: 0;
 }
 

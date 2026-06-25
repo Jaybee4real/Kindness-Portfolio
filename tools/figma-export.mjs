@@ -19,7 +19,9 @@ if (!channel || !jobsFile) {
 }
 
 const PORT = 3055;
-const jobs = JSON.parse(await (await import('node:fs/promises')).readFile(jobsFile, 'utf8'));
+const jobs = JSON.parse(
+  await (await import('node:fs/promises')).readFile(jobsFile, 'utf8'),
+);
 
 const ws = new WebSocket(`ws://localhost:${PORT}`);
 const pending = new Map();
@@ -95,10 +97,17 @@ let fail = 0;
 for (const job of jobs) {
   const { id, out, format = 'PNG', scale = 2 } = job;
   try {
-    const result = await command('export_node_as_image', { nodeId: id, format, scale });
+    const result = await command('export_node_as_image', {
+      nodeId: id,
+      format,
+      scale,
+    });
     if (process.env.DEBUG) {
       console.log('RESULT TYPE:', typeof result);
-      console.log('RESULT KEYS:', result && typeof result === 'object' ? Object.keys(result) : '(n/a)');
+      console.log(
+        'RESULT KEYS:',
+        result && typeof result === 'object' ? Object.keys(result) : '(n/a)',
+      );
       console.log('RESULT PREVIEW:', JSON.stringify(result)?.slice(0, 400));
     }
     if (!result || !result.imageData) throw new Error('no imageData in result');
@@ -106,7 +115,9 @@ for (const job of jobs) {
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, Buffer.from(result.imageData, 'base64'));
     ok++;
-    console.log(`✓ ${id} -> ${out} (${Math.round(result.imageData.length / 1365)}KB)`);
+    console.log(
+      `✓ ${id} -> ${out} (${Math.round(result.imageData.length / 1365)}KB)`,
+    );
   } catch (err) {
     fail++;
     console.error(`✗ ${id} -> ${out}: ${err.message}`);

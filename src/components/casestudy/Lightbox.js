@@ -3,7 +3,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Lightbox.module.scss';
 
-const isWireframe = (img) => /midfi-/.test(img.getAttribute('src') || '');
+// next/image rewrites src to `/_next/image?url=<encoded original>`; recover the
+// original path so titles and the wireframe filter work off the real filename.
+function originalSrc(node) {
+  const raw = node.getAttribute('src') || '';
+  const match = raw.match(/[?&]url=([^&]+)/);
+  if (match) return decodeURIComponent(match[1]);
+  return node.currentSrc || node.src || raw;
+}
+
+const isWireframe = (img) => /midfi-/.test(originalSrc(img));
 const isEligible = (img) => img.tagName === 'IMG' && !isWireframe(img);
 
 const PRETTY = {
@@ -68,7 +77,7 @@ export default function Lightbox() {
         return (((current + direction) % count) + count) % count;
       });
     },
-    [items.length]
+    [items.length],
   );
 
   useEffect(() => {
@@ -82,10 +91,10 @@ export default function Lightbox() {
       if (!img || !root.contains(img) || !isEligible(img)) return;
       const all = [...root.querySelectorAll('img')].filter(isEligible);
       setItems(
-        all.map((node) => ({
-          src: node.currentSrc || node.src,
-          title: titleFor(node.currentSrc || node.src),
-        }))
+        all.map((node) => {
+          const src = originalSrc(node);
+          return { src, title: titleFor(src) };
+        }),
       );
       setIndex(all.indexOf(img));
       resetView();
@@ -151,15 +160,33 @@ export default function Lightbox() {
   };
 
   return (
-    <div className={styles.overlay} onClick={close} role="dialog" aria-modal="true">
-      <button className={styles.close} onClick={close} aria-label="Close viewer" type="button">
+    <div
+      className={styles.overlay}
+      onClick={close}
+      role="dialog"
+      aria-modal="true"
+    >
+      <button
+        className={styles.close}
+        onClick={close}
+        aria-label="Close viewer"
+        type="button"
+      >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path
+            d="M6 6l12 12M18 6 6 18"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
       </button>
 
       <div className={styles.stage} onClick={stop}>
         <div className={styles.imageWrap}>
+          {/* Interactive zoom/pan viewer for arbitrary-dimension screenshots,
+              driven by transform on the ref; next/image is the wrong tool here. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={imgRef}
             src={item.src}
@@ -187,43 +214,131 @@ export default function Lightbox() {
 
           <div className={styles.tools}>
             {items.length > 1 && (
-              <button className={styles.tool} onClick={() => go(-1)} aria-label="Previous" type="button">
+              <button
+                className={styles.tool}
+                onClick={() => go(-1)}
+                aria-label="Previous"
+                type="button"
+              >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M15 5l-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M15 5l-7 7 7 7"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
             )}
 
-            <button className={styles.tool} onClick={() => zoom(1 / 1.4)} aria-label="Zoom out" type="button">
+            <button
+              className={styles.tool}
+              onClick={() => zoom(1 / 1.4)}
+              aria-label="Zoom out"
+              type="button"
+            >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-                <path d="m20 20-3.5-3.5M8 11h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="m20 20-3.5-3.5M8 11h6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
-            <button className={styles.tool} onClick={() => zoom(1.4)} aria-label="Zoom in" type="button">
+            <button
+              className={styles.tool}
+              onClick={() => zoom(1.4)}
+              aria-label="Zoom in"
+              type="button"
+            >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-                <path d="m20 20-3.5-3.5M11 8v6M8 11h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="m20 20-3.5-3.5M11 8v6M8 11h6"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
 
-            <button className={styles.tool} onClick={() => setRotation((deg) => deg - 90)} aria-label="Rotate left" type="button">
+            <button
+              className={styles.tool}
+              onClick={() => setRotation((deg) => deg - 90)}
+              aria-label="Rotate left"
+              type="button"
+            >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M3 8a9 9 0 1 1-1.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M3 4v4h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M3 8a9 9 0 1 1-1.5 5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M3 4v4h4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
-            <button className={styles.tool} onClick={() => setRotation((deg) => deg + 90)} aria-label="Rotate right" type="button">
+            <button
+              className={styles.tool}
+              onClick={() => setRotation((deg) => deg + 90)}
+              aria-label="Rotate right"
+              type="button"
+            >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M21 8a9 9 0 1 0 1.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M21 4v4h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M21 8a9 9 0 1 0 1.5 5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M21 4v4h-4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
 
             {items.length > 1 && (
-              <button className={styles.tool} onClick={() => go(1)} aria-label="Next" type="button">
+              <button
+                className={styles.tool}
+                onClick={() => go(1)}
+                aria-label="Next"
+                type="button"
+              >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M9 5l7 7-7 7"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
             )}

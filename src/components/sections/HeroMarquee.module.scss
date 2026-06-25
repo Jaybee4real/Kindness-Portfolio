@@ -15,10 +15,10 @@
 
 .card {
   height: 380px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: $white;
-  box-shadow: 0 12px 40px rgba(18, 20, 26, 0.06);
+  // marquee images ship with their own rounded corners (transparent outside the
+  // radius); drop-shadow hugs that alpha shape, so a card background + clip would
+  // only show white through the rounded corners.
+  filter: drop-shadow(0 12px 40px rgba(18, 20, 26, 0.06));
 
   @include tablet {
     height: 280px;
@@ -26,7 +26,6 @@
 
   @include mobile {
     height: 200px;
-    border-radius: 12px;
   }
 }
 

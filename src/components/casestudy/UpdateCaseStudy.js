@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './CaseStudy.module.scss';
 import Reveal from '../ui/Reveal';
 import { PROTOTYPES } from '@/lib/links';
@@ -11,10 +12,37 @@ const META = [
 
 const PROCESS = [
   { title: 'Analysis', items: ['User Personas', 'Functional Analysis'] },
-  { title: 'Research', items: ['User Flow', 'Information Architecture', 'User Interviews', 'Competitor Analysis'] },
-  { title: 'Prototyping', items: ['Service Structure', 'Wireframes (Low-fidelity)', 'Functional Prototype', 'Technical Specialization'] },
-  { title: 'Design', items: ['Visual Concept', 'Design System', 'App Icon', 'High-Fidelity UI'] },
-  { title: 'Test', items: ['Interactive Prototype', 'Animation', 'Main flow Testing', 'Specification for a Developer'] },
+  {
+    title: 'Research',
+    items: [
+      'User Flow',
+      'Information Architecture',
+      'User Interviews',
+      'Competitor Analysis',
+    ],
+  },
+  {
+    title: 'Prototyping',
+    items: [
+      'Service Structure',
+      'Wireframes (Low-fidelity)',
+      'Functional Prototype',
+      'Technical Specialization',
+    ],
+  },
+  {
+    title: 'Design',
+    items: ['Visual Concept', 'Design System', 'App Icon', 'High-Fidelity UI'],
+  },
+  {
+    title: 'Test',
+    items: [
+      'Interactive Prototype',
+      'Animation',
+      'Main flow Testing',
+      'Specification for a Developer',
+    ],
+  },
 ];
 
 function Phase({ children }) {
@@ -33,14 +61,22 @@ export default function UpdateCaseStudy() {
       {/* HERO */}
       <Reveal className={styles.heroPhones} as="div" y={20}>
         {[1, 2, 3, 4, 5].map((n) => (
-          <img key={n} src={`/images/work/update/hero-${n}.webp`} alt="" />
+          <Image
+            key={n}
+            src={`/images/work/update/hero-${n}.webp`}
+            alt=""
+            width={470}
+            height={952}
+          />
         ))}
       </Reveal>
 
       <div className={styles.heroText}>
         <Reveal className={styles.heroMain} as="div">
           <span className={styles.kicker}>Update App</span>
-          <p className={styles.heroSub}>Social Networking Mobile App Design • 2026</p>
+          <p className={styles.heroSub}>
+            Social Networking Mobile App Design • 2026
+          </p>
           <h1 className={styles.heroHeadline}>
             One App, Several Experiences:
             <br />
@@ -70,7 +106,9 @@ export default function UpdateCaseStudy() {
           <div className={styles.chips}>
             <span className={styles.chip}>Limited Brand Visibility</span>
             <span className={styles.chip}>Fragmented Communities</span>
-            <span className={`${styles.chip} ${styles.chipBlue}`}>Low Content Discoverability</span>
+            <span className={`${styles.chip} ${styles.chipBlue}`}>
+              Low Content Discoverability
+            </span>
           </div>
         </div>
         <div className={styles.col}>
@@ -81,7 +119,9 @@ export default function UpdateCaseStudy() {
           <div className={styles.chips}>
             <span className={styles.chip}>Organic Brand Growth</span>
             <span className={styles.chip}>Room-Based Communities</span>
-            <span className={`${styles.chip} ${styles.chipBlue}`}>Contextual Discovery</span>
+            <span className={`${styles.chip} ${styles.chipBlue}`}>
+              Contextual Discovery
+            </span>
           </div>
         </div>
       </Reveal>
@@ -117,11 +157,11 @@ export default function UpdateCaseStudy() {
         </div>
         <div className={styles.splitBody}>
           <p className={styles.body}>
-            I interviewed four participants who who were all creators and small business
-            owners but do not have an audience. Hearing things from their point of view,
-            helped me gain an in depth understanding of the participants&rsquo; backgrounds
-            and struggles so I&rsquo;m able to find effective ways to help fill their needs
-            and achieve their goals
+            I interviewed four participants who who were all creators and small
+            business owners but do not have an audience. Hearing things from
+            their point of view, helped me gain an in depth understanding of the
+            participants&rsquo; backgrounds and struggles so I&rsquo;m able to
+            find effective ways to help fill their needs and achieve their goals
           </p>
         </div>
       </Reveal>
@@ -130,17 +170,18 @@ export default function UpdateCaseStudy() {
         <h2 className={styles.label}>Key Takeaways</h2>
         <div className={styles.takeaways}>
           <p className={styles.takeaway}>
-            Many participants said they often encounter content that doesn&rsquo;t match
-            their interests and find it difficult to locate communities that align with
-            their hobbies or goals.
+            Many participants said they often encounter content that
+            doesn&rsquo;t match their interests and find it difficult to locate
+            communities that align with their hobbies or goals.
           </p>
           <p className={styles.takeaway}>
-            Creators and regular users expressed frustration that posts often fail to reach
-            the right audience, regardless of content quality.
+            Creators and regular users expressed frustration that posts often
+            fail to reach the right audience, regardless of content quality.
           </p>
           <p className={styles.takeaway}>
-            Participants reported feeling that existing social media platforms prioritizes
-            engagement metrics over genuine conversations which felt tiring to them.
+            Participants reported feeling that existing social media platforms
+            prioritizes engagement metrics over genuine conversations which felt
+            tiring to them.
           </p>
         </div>
       </Reveal>
@@ -155,11 +196,11 @@ export default function UpdateCaseStudy() {
         </div>
         <div className={styles.splitBody}>
           <p className={styles.body}>
-            By creating a user persona, I gain insights into the actual users&rsquo; needs,
-            goals, and frustrations. Through empathy, I can provide a more meaningful user
-            experience. The objective is to identify effective strategies to address the
-            users&rsquo; needs and pain points, based on the user persona that has been
-            created.
+            By creating a user persona, I gain insights into the actual
+            users&rsquo; needs, goals, and frustrations. Through empathy, I can
+            provide a more meaningful user experience. The objective is to
+            identify effective strategies to address the users&rsquo; needs and
+            pain points, based on the user persona that has been created.
           </p>
         </div>
       </Reveal>
@@ -168,7 +209,13 @@ export default function UpdateCaseStudy() {
         <div className={styles.personaId}>
           <div className={styles.personaName}>Amina</div>
           <div className={styles.personaRole}>The Emerging Creator</div>
-          <img className={styles.personaPhoto} src="/images/work/update/persona.webp" alt="Amina" />
+          <Image
+            className={styles.personaPhoto}
+            src="/images/work/update/persona.webp"
+            alt="Amina"
+            width={518}
+            height={518}
+          />
           <div className={styles.personaMeta}>
             Age: 23
             <br />
@@ -177,11 +224,13 @@ export default function UpdateCaseStudy() {
             Location: Lagos State
           </div>
           <div className={styles.feelings}>
-            {['Hesitant', 'Overwhelmed', 'Curious', 'Hesitant', 'Hopeful'].map((feel, index) => (
-              <span key={index} className={styles.feelPill}>
-                {feel}
-              </span>
-            ))}
+            {['Hesitant', 'Overwhelmed', 'Curious', 'Hesitant', 'Hopeful'].map(
+              (feel, index) => (
+                <span key={index} className={styles.feelPill}>
+                  {feel}
+                </span>
+              ),
+            )}
           </div>
         </div>
 
@@ -189,11 +238,12 @@ export default function UpdateCaseStudy() {
           <div className={styles.personaGroup}>
             <div className={styles.personaBlockTitle}>Background</div>
             <p className={styles.body} style={{ fontSize: 20 }}>
-              Amina is a lifestyle creator based in Lagos who shares content about fashion,
-              entrepreneurship, and personal growth. She spends hours creating high-quality
-              content, engaging with her audience, and promoting her products. Despite her
-              efforts, Amina often struggles to get her content in front of people who are
-              genuinely interested in her niche. She feels like she&rsquo;s competing
+              Amina is a lifestyle creator based in Lagos who shares content
+              about fashion, entrepreneurship, and personal growth. She spends
+              hours creating high-quality content, engaging with her audience,
+              and promoting her products. Despite her efforts, Amina often
+              struggles to get her content in front of people who are genuinely
+              interested in her niche. She feels like she&rsquo;s competing
               against algorithms rather than connecting with real communities.
             </p>
           </div>
@@ -214,17 +264,30 @@ export default function UpdateCaseStudy() {
           <div className={styles.personaGroup}>
             <div className={styles.personaBlockTitle}>Need / Goals</div>
             <ul className={styles.personaList}>
-              <li>Find communities that genuinely care about her content and expertise.</li>
-              <li>Build deeper relationships with followers and potential customers.</li>
-              <li>Grow her audience organically within relevant communities.</li>
-              <li>Turn her content creation into a sustainable source of income.</li>
+              <li>
+                Find communities that genuinely care about her content and
+                expertise.
+              </li>
+              <li>
+                Build deeper relationships with followers and potential
+                customers.
+              </li>
+              <li>
+                Grow her audience organically within relevant communities.
+              </li>
+              <li>
+                Turn her content creation into a sustainable source of income.
+              </li>
             </ul>
           </div>
           <div className={styles.personaGroup}>
             <div className={styles.personaBlockTitle}>Motivation</div>
             <ul className={styles.personaList}>
               <li>Establish herself as a trusted voice in her niche.</li>
-              <li>Gain recognition for the value she provides rather than her ability to &ldquo;beat the algorithm.&rdquo;</li>
+              <li>
+                Gain recognition for the value she provides rather than her
+                ability to &ldquo;beat the algorithm.&rdquo;
+              </li>
             </ul>
           </div>
         </div>
@@ -241,15 +304,22 @@ export default function UpdateCaseStudy() {
           </div>
           <div className={styles.splitBody}>
             <p className={styles.body}>
-              With mid-fidelity wireframes, I can concentrate on the layout and hierarchy
-              without being distracted by aesthetic details. This stage is crucial for
-              obtaining feedback and making modifications before moving forward.
+              With mid-fidelity wireframes, I can concentrate on the layout and
+              hierarchy without being distracted by aesthetic details. This
+              stage is crucial for obtaining feedback and making modifications
+              before moving forward.
             </p>
           </div>
         </Reveal>
         <Reveal className={styles.grid4} as="div">
           {Array.from({ length: 8 }).map((_, index) => (
-            <img key={index} src={`/images/work/update/midfi-${index + 1}.webp`} alt="" />
+            <Image
+              key={index}
+              src={`/images/work/update/midfi-${index + 1}.webp`}
+              alt=""
+              width={532}
+              height={1152}
+            />
           ))}
         </Reveal>
       </div>
@@ -265,27 +335,64 @@ export default function UpdateCaseStudy() {
           </div>
           <div className={styles.splitBody}>
             <p className={styles.body}>
-              With incorporating the design choices to the mid-fidelity wireframes I&rsquo;m
-              able to see a clearer representation of the final product. It&rsquo;s important
-              to stay true to the brands identity and values by staying consistent with the
-              content and style throughout the application. By creating these wireframes,
-              I&rsquo;m able to move forward with prototyping and effectively bring these
-              designs to life.
+              With incorporating the design choices to the mid-fidelity
+              wireframes I&rsquo;m able to see a clearer representation of the
+              final product. It&rsquo;s important to stay true to the brands
+              identity and values by staying consistent with the content and
+              style throughout the application. By creating these wireframes,
+              I&rsquo;m able to move forward with prototyping and effectively
+              bring these designs to life.
             </p>
           </div>
         </Reveal>
         <div className={styles.hifi}>
           <Reveal className={styles.hifiRow} as="div">
-            <img src="/images/work/update/hifi-1.webp" alt="" style={{ flex: 606 }} />
-            <img src="/images/work/update/hifi-2.webp" alt="" style={{ flex: 605 }} />
+            <Image
+              src="/images/work/update/hifi-1.webp"
+              alt=""
+              width={1212}
+              height={976}
+              style={{ flex: 606 }}
+            />
+            <Image
+              src="/images/work/update/hifi-2.webp"
+              alt=""
+              width={1210}
+              height={976}
+              style={{ flex: 605 }}
+            />
           </Reveal>
           <Reveal className={styles.hifiRow} as="div">
-            <img src="/images/work/update/hifi-3.webp" alt="" style={{ flex: 823 }} />
-            <img src="/images/work/update/hifi-4.webp" alt="" style={{ flex: 393 }} />
+            <Image
+              src="/images/work/update/hifi-3.webp"
+              alt=""
+              width={1646}
+              height={1778}
+              style={{ flex: 823 }}
+            />
+            <Image
+              src="/images/work/update/hifi-4.webp"
+              alt=""
+              width={786}
+              height={1782}
+              style={{ flex: 393 }}
+            />
           </Reveal>
           <Reveal className={styles.hifiRow} as="div">
-            <img src="/images/work/update/hifi-5.webp" alt="" style={{ flex: 393 }} />
-            <img src="/images/work/update/hifi-6.webp" alt="" style={{ flex: 823 }} />
+            <Image
+              src="/images/work/update/hifi-5.webp"
+              alt=""
+              width={786}
+              height={1782}
+              style={{ flex: 393 }}
+            />
+            <Image
+              src="/images/work/update/hifi-6.webp"
+              alt=""
+              width={1646}
+              height={1778}
+              style={{ flex: 823 }}
+            />
           </Reveal>
         </div>
       </div>
@@ -294,7 +401,13 @@ export default function UpdateCaseStudy() {
       <Reveal className={styles.section} as="div">
         <div className={styles.grid6}>
           {Array.from({ length: 12 }).map((_, index) => (
-            <img key={index} src={`/images/work/update/proto-${index + 1}.webp`} alt="" />
+            <Image
+              key={index}
+              src={`/images/work/update/proto-${index + 1}.webp`}
+              alt=""
+              width={348}
+              height={704}
+            />
           ))}
         </div>
         <a
@@ -315,36 +428,48 @@ export default function UpdateCaseStudy() {
           </div>
           <div className={styles.splitBody}>
             <p className={styles.body}>
-              The goal of this test is to understand how users navigate and complete the
-              tasks within the app. I want to see if there&rsquo;s any confusion with
-              locating resources/topics/strategies and how smooth and quickly it is to add it
-              to their schedule. The tasks include signing up/picking topics, finding more
-              topics from home screen, and lastly adding a strategy to their schedule
+              The goal of this test is to understand how users navigate and
+              complete the tasks within the app. I want to see if there&rsquo;s
+              any confusion with locating resources/topics/strategies and how
+              smooth and quickly it is to add it to their schedule. The tasks
+              include signing up/picking topics, finding more topics from home
+              screen, and lastly adding a strategy to their schedule
             </p>
             <p className={styles.body} style={{ marginTop: 24 }}>
-              Participants felt the overall look was visually appealing and clean. They liked
-              how simple it was to navigate through and most enjoyed the personalization
-              throughout the application. Some participants mentioned they would change some
-              details regarding the adding strategy screen.
+              Participants felt the overall look was visually appealing and
+              clean. They liked how simple it was to navigate through and most
+              enjoyed the personalization throughout the application. Some
+              participants mentioned they would change some details regarding
+              the adding strategy screen.
             </p>
           </div>
         </Reveal>
         <Reveal className={styles.beforeAfter} as="div">
           <div className={styles.baCol}>
             <div className={styles.baLabel}>Before Testing</div>
-            <img src="/images/work/update/test-before.webp" alt="Before testing" />
+            <Image
+              src="/images/work/update/test-before.webp"
+              alt="Before testing"
+              width={668}
+              height={1352}
+            />
           </div>
           <div className={styles.baCol}>
             <div className={styles.baLabel}>After Testing</div>
-            <img src="/images/work/update/test-after.webp" alt="After testing" />
+            <Image
+              src="/images/work/update/test-after.webp"
+              alt="After testing"
+              width={668}
+              height={1352}
+            />
           </div>
         </Reveal>
         <p className={styles.baCaption}>
-          People had trouble finding the Discover feature when it was hidden inside Explore
-          and they recommended giving it its own navigation tab. After making that change, it
-          became much easier to discover. The Notifications was also to a more noticeable
-          spot, so now updates, messages, and community activity are easier and faster to
-          reach.
+          People had trouble finding the Discover feature when it was hidden
+          inside Explore and they recommended giving it its own navigation tab.
+          After making that change, it became much easier to discover. The
+          Notifications was also to a more noticeable spot, so now updates,
+          messages, and community activity are easier and faster to reach.
         </p>
       </div>
 
@@ -357,19 +482,21 @@ export default function UpdateCaseStudy() {
         </div>
         <div className={styles.splitBody}>
           <p className={styles.body}>
-            <span className={styles.keyTerm}>Empathizing With The User :</span> Understanding
-            the users pain points, needs, and goals allows the designer to be able to provide
-            a better user experience, reducing confusion and frustration
+            <span className={styles.keyTerm}>Empathizing With The User :</span>{' '}
+            Understanding the users pain points, needs, and goals allows the
+            designer to be able to provide a better user experience, reducing
+            confusion and frustration
           </p>
           <p className={styles.body} style={{ marginTop: 24 }}>
-            <span className={styles.keyTerm}>Testing And Feedback :</span> These steps
-            throughout the design process are necessary for designers so that they are able
-            to identify any issues and make improvements to the design.
+            <span className={styles.keyTerm}>Testing And Feedback :</span> These
+            steps throughout the design process are necessary for designers so
+            that they are able to identify any issues and make improvements to
+            the design.
           </p>
           <p className={styles.body} style={{ marginTop: 24 }}>
-            <span className={styles.keyTerm}>Accessibility :</span> It&rsquo;s crucial that
-            the design is inclusive and accessible to everyone, including individuals with
-            disabilities.
+            <span className={styles.keyTerm}>Accessibility :</span> It&rsquo;s
+            crucial that the design is inclusive and accessible to everyone,
+            including individuals with disabilities.
           </p>
         </div>
       </Reveal>

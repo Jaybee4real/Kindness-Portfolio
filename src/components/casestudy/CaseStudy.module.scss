@@ -606,7 +606,9 @@ $cs-meta: #4e5c7b;
   font-weight: 500;
   font-size: 24px;
   color: $cs-accent;
-  transition: border-color 0.2s $ease-out, transform 0.2s $ease-out;
+  transition:
+    border-color 0.2s $ease-out,
+    transform 0.2s $ease-out;
 
   &:hover {
     border-color: $cs-accent;

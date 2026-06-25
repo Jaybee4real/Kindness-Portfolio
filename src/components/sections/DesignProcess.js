@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import styles from './DesignProcess.module.scss';
 import Reveal from '../ui/Reveal';
 
@@ -63,7 +64,9 @@ export default function DesignProcess() {
           bounds.push(endY);
           const stops = [];
           for (let segment = 0; segment < bounds.length - 1; segment += 1) {
-            const color = SEGMENT_COLORS[segment] || SEGMENT_COLORS[SEGMENT_COLORS.length - 1];
+            const color =
+              SEGMENT_COLORS[segment] ||
+              SEGMENT_COLORS[SEGMENT_COLORS.length - 1];
             stops.push(`${color} ${bounds[segment].toFixed(1)}px`);
             stops.push(`${color} ${bounds[segment + 1].toFixed(1)}px`);
           }
@@ -75,7 +78,10 @@ export default function DesignProcess() {
 
         const progress = Math.min(
           1,
-          Math.max(0, (window.innerHeight * 0.55 - stepsRect.top) / stepsRect.height)
+          Math.max(
+            0,
+            (window.innerHeight * 0.55 - stepsRect.top) / stepsRect.height,
+          ),
         );
         fill.style.height = `${progress * height}px`;
       }
@@ -104,7 +110,14 @@ export default function DesignProcess() {
             delay={index * 0.1}
           >
             <div className={styles.rail}>
-              <img data-icon className={styles.icon} src={step.icon} alt="" />
+              <Image
+                data-icon
+                className={styles.icon}
+                src={step.icon}
+                alt=""
+                width={112}
+                height={112}
+              />
             </div>
             <div className={styles.content}>
               <h3 className={styles.stepTitle}>{step.title}</h3>

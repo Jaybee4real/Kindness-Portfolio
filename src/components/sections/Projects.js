@@ -102,8 +102,12 @@ export default function Projects() {
             <h2 className={styles.heading}>
               A curated collection of projects designed with care
             </h2>
-            <div className={styles.toggle} role="group" aria-label="Projects layout">
-               <button
+            <div
+              className={styles.toggle}
+              role="group"
+              aria-label="Projects layout"
+            >
+              <button
                 type="button"
                 className={`${styles.toggleBtn} ${horizontal ? styles.toggleActive : ''}`}
                 onClick={() => setHorizontal(true)}
@@ -111,9 +115,30 @@ export default function Projects() {
                 aria-label="Horizontal scroll layout"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <rect x="4" y="4" width="3.4" height="16" rx="1.7" fill="currentColor" />
-                  <rect x="10.3" y="4" width="3.4" height="16" rx="1.7" fill="currentColor" />
-                  <rect x="16.6" y="4" width="3.4" height="16" rx="1.7" fill="currentColor" />
+                  <rect
+                    x="4"
+                    y="4"
+                    width="3.4"
+                    height="16"
+                    rx="1.7"
+                    fill="currentColor"
+                  />
+                  <rect
+                    x="10.3"
+                    y="4"
+                    width="3.4"
+                    height="16"
+                    rx="1.7"
+                    fill="currentColor"
+                  />
+                  <rect
+                    x="16.6"
+                    y="4"
+                    width="3.4"
+                    height="16"
+                    rx="1.7"
+                    fill="currentColor"
+                  />
                 </svg>
               </button>
               <button
@@ -124,11 +149,32 @@ export default function Projects() {
                 aria-label="Stacked layout"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <rect x="4" y="4" width="16" height="3.4" rx="1.7" fill="currentColor" />
-                  <rect x="4" y="10.3" width="16" height="3.4" rx="1.7" fill="currentColor" />
-                  <rect x="4" y="16.6" width="16" height="3.4" rx="1.7" fill="currentColor" />
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="3.4"
+                    rx="1.7"
+                    fill="currentColor"
+                  />
+                  <rect
+                    x="4"
+                    y="10.3"
+                    width="16"
+                    height="3.4"
+                    rx="1.7"
+                    fill="currentColor"
+                  />
+                  <rect
+                    x="4"
+                    y="16.6"
+                    width="16"
+                    height="3.4"
+                    rx="1.7"
+                    fill="currentColor"
+                  />
                 </svg>
-              </button> 
+              </button>
             </div>
           </div>
           <span className={styles.tag}>Projects</span>

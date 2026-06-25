@@ -1,7 +1,14 @@
+import Image from 'next/image';
 import styles from './CaseStudy.module.scss';
 import Reveal from '../ui/Reveal';
 
-const stroke = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round', strokeLinejoin: 'round' };
+const stroke = {
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.7,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+};
 
 export const Icons = {
   bulb: (
@@ -45,12 +52,26 @@ export function Phase({ children }) {
   );
 }
 
-export function CaseHero({ slug, kicker, subtitle, headline, body, meta, phoneCount = 5 }) {
+export function CaseHero({
+  slug,
+  kicker,
+  subtitle,
+  headline,
+  body,
+  meta,
+  phoneCount = 5,
+}) {
   return (
     <>
       <Reveal className={styles.heroPhones} as="div" y={20}>
         {Array.from({ length: phoneCount }).map((_, index) => (
-          <img key={index} src={`/images/work/${slug}/hero-${index + 1}.webp`} alt="" />
+          <Image
+            key={index}
+            src={`/images/work/${slug}/hero-${index + 1}.webp`}
+            alt=""
+            width={470}
+            height={952}
+          />
         ))}
       </Reveal>
       <div className={styles.heroText}>
@@ -60,7 +81,11 @@ export function CaseHero({ slug, kicker, subtitle, headline, body, meta, phoneCo
           <h1 className={styles.heroHeadline}>{headline}</h1>
           <p className={`${styles.body} ${styles.heroOverview}`}>{body}</p>
         </Reveal>
-        <Reveal className={`${styles.heroMeta} ${styles.heroMetaCard}`} as="div" delay={0.1}>
+        <Reveal
+          className={`${styles.heroMeta} ${styles.heroMetaCard}`}
+          as="div"
+          delay={0.1}
+        >
           {meta.map((item) => (
             <div key={item.label}>
               <div className={styles.metaLabel}>{item.label}</div>
@@ -86,10 +111,37 @@ export function Split({ label, children }) {
 
 const PROC = [
   { t: 'Analysis', i: ['User Personas', 'Functional Analysis'] },
-  { t: 'Research', i: ['User Flow', 'Information Architecture', 'User Interviews', 'Competitor Analysis'] },
-  { t: 'Prototyping', i: ['Service Structure', 'Wireframes (Low-fidelity)', 'Functional Prototype', 'Technical Specialization'] },
-  { t: 'Design', i: ['Visual Concept', 'Design System', 'App Icon', 'High-Fidelity UI'] },
-  { t: 'Test', i: ['Interactive Prototype', 'Animation', 'Main flow Testing', 'Specification for a Developer'] },
+  {
+    t: 'Research',
+    i: [
+      'User Flow',
+      'Information Architecture',
+      'User Interviews',
+      'Competitor Analysis',
+    ],
+  },
+  {
+    t: 'Prototyping',
+    i: [
+      'Service Structure',
+      'Wireframes (Low-fidelity)',
+      'Functional Prototype',
+      'Technical Specialization',
+    ],
+  },
+  {
+    t: 'Design',
+    i: ['Visual Concept', 'Design System', 'App Icon', 'High-Fidelity UI'],
+  },
+  {
+    t: 'Test',
+    i: [
+      'Interactive Prototype',
+      'Animation',
+      'Main flow Testing',
+      'Specification for a Developer',
+    ],
+  },
 ];
 
 export function ProcessGrid() {
@@ -141,13 +193,31 @@ export function ProblemSolution({ problem, solution }) {
   );
 }
 
-export function Persona({ name, role, photo, age, occupation, location, feelings, background, painPoints, needs, motivation }) {
+export function Persona({
+  name,
+  role,
+  photo,
+  age,
+  occupation,
+  location,
+  feelings,
+  background,
+  painPoints,
+  needs,
+  motivation,
+}) {
   return (
     <Reveal className={styles.personaCard} as="div">
       <div className={styles.personaId}>
         <div className={styles.personaName}>{name}</div>
         <div className={styles.personaRole}>{role}</div>
-        <img className={styles.personaPhoto} src={photo} alt={name} />
+        <Image
+          className={styles.personaPhoto}
+          src={photo}
+          alt={name}
+          width={518}
+          height={518}
+        />
         <div className={styles.personaMeta}>
           Age: {age}
           <br />
@@ -223,7 +293,11 @@ export function KeyTakeaways({ items }) {
       </div>
       <div className={styles.splitBody}>
         {items.map((item, index) => (
-          <p key={index} className={styles.body} style={index ? { marginTop: 24 } : undefined}>
+          <p
+            key={index}
+            className={styles.body}
+            style={index ? { marginTop: 24 } : undefined}
+          >
             <span className={styles.keyTerm}>{item.term} :</span> {item.text}
           </p>
         ))}

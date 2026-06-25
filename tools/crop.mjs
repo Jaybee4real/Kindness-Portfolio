@@ -18,7 +18,9 @@ const scaleFlag = args.indexOf('--scale');
 const scale = scaleFlag !== -1 ? Number(args[scaleFlag + 1]) : 2;
 
 if (!src || !jobsFile) {
-  console.error('Usage: node tools/crop.mjs <srcImage> <jobsFile.json> [--scale N]');
+  console.error(
+    'Usage: node tools/crop.mjs <srcImage> <jobsFile.json> [--scale N]',
+  );
   process.exit(1);
 }
 

@@ -10,7 +10,9 @@ import { CASE_STUDIES } from '@/lib/links';
 import { SITE, SITE_URL } from '@/lib/site';
 import styles from './caseStudy.module.scss';
 
-const CASES = Object.fromEntries(CASE_STUDIES.map((study) => [study.slug, study]));
+const CASES = Object.fromEntries(
+  CASE_STUDIES.map((study) => [study.slug, study]),
+);
 
 const CUSTOM = {
   update: UpdateCaseStudy,
@@ -42,7 +44,14 @@ export async function generateMetadata({ params }) {
       url,
       title: `${caseStudy.title} — Case Study`,
       description,
-      images: [{ url: og, width: 1200, height: 630, alt: `${caseStudy.title} case study` }],
+      images: [
+        {
+          url: og,
+          width: 1200,
+          height: 630,
+          alt: `${caseStudy.title} case study`,
+        },
+      ],
     },
     twitter: {
       title: `${caseStudy.title} — Case Study`,

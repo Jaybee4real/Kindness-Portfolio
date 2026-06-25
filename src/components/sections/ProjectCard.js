@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Projects.module.scss';
 import Reveal from '../ui/Reveal';
@@ -28,7 +29,12 @@ export default function ProjectCard({ project }) {
       </div>
       <div className={styles.visual}>
         <div className={styles.visualInner}>
-          <img src={project.image} alt={`${project.title} preview`} />
+          <Image
+            src={project.image}
+            alt={`${project.title} preview`}
+            width={859}
+            height={707}
+          />
         </div>
       </div>
     </Reveal>
