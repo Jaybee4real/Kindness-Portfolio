@@ -1,9 +1,26 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import styles from './Projects.module.scss';
 import Reveal from '../ui/Reveal';
 import ProjectCard from './ProjectCard';
+
+function CardDivider() {
+  return (
+    <div className={styles.divider} aria-hidden>
+      <span className={styles.dividerLine} />
+      <span className={styles.dividerBadge}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M12 2c.6 5 1.4 5.8 6.4 6.4-5 .6-5.8 1.4-6.4 6.4-.6-5-1.4-5.8-6.4-6.4 5-.6 5.8-1.4 6.4-6.4Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      <span className={styles.dividerLine} />
+    </div>
+  );
+}
 
 const PROJECTS = [
   {
@@ -56,9 +73,17 @@ export default function Projects() {
     const loop = () => {
       if (window.innerWidth > 820) {
         const rect = pin.getBoundingClientRect();
-        const distance = rect.height - sticky.clientHeight;
+        const headerH = pin.firstElementChild
+          ? pin.firstElementChild.getBoundingClientRect().height
+          : 0;
+        const stickyH = sticky.getBoundingClientRect().height;
+        const navBottom =
+          document.querySelector('header')?.getBoundingClientRect().bottom || 0;
+        // cards translate only while the sticky is actually pinned below the navbar
+        const start = navBottom - headerH;
+        const range = rect.height - headerH - stickyH;
         const progress =
-          distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
+          range > 0 ? Math.min(1, Math.max(0, (start - rect.top) / range)) : 0;
         const max = Math.max(0, track.scrollWidth - track.clientWidth);
         track.style.transform = `translateX(${(-progress * max).toFixed(1)}px)`;
       } else {
@@ -79,11 +104,10 @@ export default function Projects() {
       className={`${styles.projects} ${horizontal ? styles.pin : ''}`}
       id="projects"
     >
-      <div ref={stickyRef} className={horizontal ? styles.sticky : styles.flow}>
-        <Reveal className={styles.header} as="div">
-          <div className={styles.headTop}>
+      <Reveal className={styles.header} as="div">
+        <div className={styles.headTop}>
             <h2 className={styles.heading}>
-              A curated collection of websites designed with care
+              A curated collection of projects designed with care
             </h2>
             <div className={styles.toggle} role="group" aria-label="Projects layout">
               <button
@@ -94,8 +118,9 @@ export default function Projects() {
                 aria-label="Stacked layout"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <rect x="4" y="4" width="16" height="6" rx="2" fill="currentColor" />
-                  <rect x="4" y="14" width="16" height="6" rx="2" fill="currentColor" />
+                  <rect x="4" y="4" width="16" height="3.4" rx="1.7" fill="currentColor" />
+                  <rect x="4" y="10.3" width="16" height="3.4" rx="1.7" fill="currentColor" />
+                  <rect x="4" y="16.6" width="16" height="3.4" rx="1.7" fill="currentColor" />
                 </svg>
               </button>
               <button
@@ -106,8 +131,9 @@ export default function Projects() {
                 aria-label="Horizontal scroll layout"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <rect x="4" y="4" width="6" height="16" rx="2" fill="currentColor" />
-                  <rect x="14" y="4" width="6" height="16" rx="2" fill="currentColor" />
+                  <rect x="4" y="4" width="3.4" height="16" rx="1.7" fill="currentColor" />
+                  <rect x="10.3" y="4" width="3.4" height="16" rx="1.7" fill="currentColor" />
+                  <rect x="16.6" y="4" width="3.4" height="16" rx="1.7" fill="currentColor" />
                 </svg>
               </button>
             </div>
@@ -115,15 +141,19 @@ export default function Projects() {
           <span className={styles.tag}>Projects</span>
         </Reveal>
 
-        <div
-          ref={trackRef}
-          className={`${styles.list} ${horizontal ? styles.listH : ''}`}
-        >
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
+        <div ref={stickyRef} className={horizontal ? styles.sticky : ''}>
+          <div
+            ref={trackRef}
+            className={`${styles.list} ${horizontal ? styles.listH : ''}`}
+          >
+            {PROJECTS.map((project, index) => (
+              <Fragment key={project.title}>
+                <ProjectCard project={project} />
+                {horizontal && index < PROJECTS.length - 1 && <CardDivider />}
+              </Fragment>
+            ))}
+          </div>
         </div>
-      </div>
     </section>
   );
 }

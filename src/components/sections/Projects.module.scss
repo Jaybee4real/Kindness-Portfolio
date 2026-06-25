@@ -5,24 +5,27 @@
   @include content-column;
 }
 
-.flow {
-  display: block;
-}
-
-// ---- horizontal-scroll (pinned) mode ----
+// ---- horizontal-scroll (pinned) mode: full-bleed ----
+// The header stays in normal flow (identical position to the stacked layout, so it
+// never shifts on toggle); only the card track is pinned and scrolls sideways.
 .pin {
   position: relative;
-  height: calc(330vh / var(--app-scale, 1));
+  height: calc(360vh / var(--app-scale, 1));
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+// in full-bleed mode the header needs its own centred 1280 column
+.pin .header {
+  @include content-column;
 }
 
 .sticky {
   position: sticky;
-  top: 0;
-  height: calc(100vh / var(--app-scale, 1));
+  top: 136px;
+  height: calc(100vh / var(--app-scale, 1) - 136px);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .header {
@@ -140,21 +143,74 @@
 }
 
 .listH {
+  height: 100%;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: 48px;
+  gap: 56px;
   align-items: center;
   will-change: transform;
+  // start the cards at the content-column left edge, then run full-bleed to the right
+  padding-left: max(clamp(20px, 5vw, 80px), calc((100% - 1280px) / 2));
+  padding-right: clamp(64px, 9vw, 200px);
 
   > * {
     flex-shrink: 0;
   }
 }
 
+// designed separator that sits in the gap between projects
+.divider {
+  flex-shrink: 0;
+  width: 96px;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.dividerLine {
+  flex: 1;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(160, 185, 225, 0),
+    rgba(146, 173, 222, 0.5) 50%,
+    rgba(160, 185, 225, 0)
+  );
+}
+
+.dividerBadge {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  margin: 22px 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #12141a;
+  background: linear-gradient(135deg, #b7e2ff, #ffd8e3 52%, #e0d8fc);
+  box-shadow: 0 10px 26px rgba(120, 150, 210, 0.28);
+}
+
 // Horizontal mode is desktop-only; fall back to the stacked layout below tablet.
 @include tablet {
   .pin {
     height: auto;
+    max-width: $content-width;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, $gutter);
+  }
+
+  .pin .header {
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0;
   }
 
   .sticky {
@@ -167,6 +223,8 @@
   .listH {
     flex-direction: column;
     gap: 56px;
+    padding-left: 0;
+    padding-right: 0;
     transform: none !important;
 
     > * {
