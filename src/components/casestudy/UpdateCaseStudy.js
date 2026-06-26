@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './CaseStudy.module.scss';
 import Reveal from '../ui/Reveal';
+import { TakeawaysPanel } from './CaseStudyParts';
 import { PROTOTYPES } from '@/lib/links';
 
 const META = [
@@ -86,7 +87,11 @@ export default function UpdateCaseStudy() {
             {`As part of a client project, I created Update Social Networking app, an application designed to enable users discover updates from all around the world through location-based rooms, while being able to connect with individuals from all around the world.\n\nI ran a focused UX audit and delivered a rapid design, streamlined navigation, tightened visual hierarchy, while prioritizing high-impact features that aligned with the client's vision and goal.`}
           </p>
         </Reveal>
-        <Reveal className={styles.heroMeta} as="div" delay={0.1}>
+        <Reveal
+          className={`${styles.heroMeta} ${styles.heroMetaCard}`}
+          as="div"
+          delay={0.1}
+        >
           {META.map((item) => (
             <div key={item.label}>
               <div className={styles.metaLabel}>{item.label}</div>
@@ -166,25 +171,13 @@ export default function UpdateCaseStudy() {
         </div>
       </Reveal>
 
-      <Reveal className={styles.section} as="div">
-        <h2 className={styles.label}>Key Takeaways</h2>
-        <div className={styles.takeaways}>
-          <p className={styles.takeaway}>
-            Many participants said they often encounter content that
-            doesn&rsquo;t match their interests and find it difficult to locate
-            communities that align with their hobbies or goals.
-          </p>
-          <p className={styles.takeaway}>
-            Creators and regular users expressed frustration that posts often
-            fail to reach the right audience, regardless of content quality.
-          </p>
-          <p className={styles.takeaway}>
-            Participants reported feeling that existing social media platforms
-            prioritizes engagement metrics over genuine conversations which felt
-            tiring to them.
-          </p>
-        </div>
-      </Reveal>
+      <TakeawaysPanel
+        items={[
+          'Many participants said they often encounter content that doesn’t match their interests and find it difficult to locate communities that align with their hobbies or goals.',
+          'Creators and regular users expressed frustration that posts often fail to reach the right audience, regardless of content quality.',
+          'Participants reported feeling that existing social media platforms prioritizes engagement metrics over genuine conversations which felt tiring to them.',
+        ]}
+      />
 
       {/* DEFINE */}
       <Phase>Define</Phase>

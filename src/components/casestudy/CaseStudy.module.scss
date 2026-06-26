@@ -391,31 +391,6 @@ $cs-meta: #4e5c7b;
   color: $cs-ink;
 }
 
-// ---- takeaways 3 col ----
-.takeaways {
-  margin-top: 56px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 56px;
-
-  @include tablet {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-}
-
-.takeaway {
-  font-family: var(--font-brand);
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 1.45;
-  color: $cs-muted;
-
-  @include tablet {
-    font-size: 18px;
-  }
-}
-
 // ---- persona card ----
 .personaCard {
   margin-top: 56px;
