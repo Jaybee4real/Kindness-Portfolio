@@ -13,7 +13,9 @@ function originalSrc(node) {
 }
 
 const isWireframe = (img) => /midfi-/.test(originalSrc(img));
-const isEligible = (img) => img.tagName === 'IMG' && !isWireframe(img);
+const isLogo = (img) => /\/logos\//.test(originalSrc(img));
+const isEligible = (img) =>
+  img.tagName === 'IMG' && !isWireframe(img) && !isLogo(img);
 
 const PRETTY = {
   'hifi-home': 'Homepage',

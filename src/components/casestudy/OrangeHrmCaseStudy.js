@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './CaseStudy.module.scss';
 import Reveal from '../ui/Reveal';
+import ProjectLogo from '../ui/ProjectLogo';
 import {
   Phase,
   Split,
@@ -86,7 +87,15 @@ export default function OrangeHrmCaseStudy() {
       </Reveal>
       <div className={styles.heroText}>
         <Reveal className={styles.heroMain} as="div">
-          <span className={styles.kicker}>Orange HRM</span>
+          <div className={styles.kickerRow}>
+            <ProjectLogo
+              slug={SLUG}
+              height={48}
+              priority
+              className={styles.kickerLogo}
+            />
+            <span className={styles.kicker}>Orange HRM</span>
+          </div>
           <p className={styles.heroSub}>HRM Dashboard Design • 2025</p>
           <h1 className={styles.heroHeadline}>
             Redesigning Orange HRM Dashboard: Driving Growth And Responsiveness.
