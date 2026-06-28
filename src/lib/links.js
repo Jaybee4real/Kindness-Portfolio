@@ -7,7 +7,22 @@ export const LINKS = {
 
 export const PROTOTYPES = {
   update:
-    'https://www.figma.com/proto/PA4zRCHla4FEFZ60wKEwBr/Update-Room?node-id=5038-43732&viewport=-1631%2C1102%2C0.17&t=5EJidT7BRGT4o5it-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=184%3A4290&page-id=2%3A4',
+    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11004-27720&viewport=189%2C1111%2C0.1&t=ocodF6wx3TszTqZw-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11004%3A24420&page-id=2%3A4',
+  'e-split':
+    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11012-12632&viewport=275%2C191%2C0.11&t=fvnaj1awgGLlmuNn-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11012%3A12334&page-id=2%3A6',
+  keyfund:
+    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11020-9029&viewport=207%2C-642%2C1.36&t=fkn8EKdiEP9hHfQp-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11020%3A27894&page-id=2%3A5',
+};
+
+export const LOGOS = {
+  update: { src: '/images/logos/update.png', width: 494, height: 548 },
+  keyfund: { src: '/images/logos/keyfund.png', width: 465, height: 409 },
+  'orange-hrm': {
+    src: '/images/logos/orange-hrm.png',
+    width: 355,
+    height: 429,
+  },
+  'e-split': { src: '/images/logos/e-split.png', width: 620, height: 448 },
 };
 
 export const CASE_STUDIES = [

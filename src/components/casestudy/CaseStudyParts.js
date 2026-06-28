@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './CaseStudy.module.scss';
 import Reveal from '../ui/Reveal';
+import ProjectLogo from '../ui/ProjectLogo';
 
 const stroke = {
   fill: 'none',
@@ -76,7 +77,15 @@ export function CaseHero({
       </Reveal>
       <div className={styles.heroText}>
         <Reveal className={styles.heroMain} as="div">
-          <span className={styles.kicker}>{kicker}</span>
+          <div className={styles.kickerRow}>
+            <ProjectLogo
+              slug={slug}
+              height={48}
+              priority
+              className={styles.kickerLogo}
+            />
+            <span className={styles.kicker}>{kicker}</span>
+          </div>
           <p className={styles.heroSub}>{subtitle}</p>
           <h1 className={styles.heroHeadline}>{headline}</h1>
           <p className={`${styles.body} ${styles.heroOverview}`}>{body}</p>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './CaseStudy.module.scss';
 import Reveal from '../ui/Reveal';
+import ProjectLogo from '../ui/ProjectLogo';
 import { TakeawaysPanel } from './CaseStudyParts';
 import { PROTOTYPES } from '@/lib/links';
 
@@ -74,7 +75,15 @@ export default function UpdateCaseStudy() {
 
       <div className={styles.heroText}>
         <Reveal className={styles.heroMain} as="div">
-          <span className={styles.kicker}>Update App</span>
+          <div className={styles.kickerRow}>
+            <ProjectLogo
+              slug="update"
+              height={48}
+              priority
+              className={styles.kickerLogo}
+            />
+            <span className={styles.kicker}>Update App</span>
+          </div>
           <p className={styles.heroSub}>
             Social Networking Mobile App Design • 2026
           </p>

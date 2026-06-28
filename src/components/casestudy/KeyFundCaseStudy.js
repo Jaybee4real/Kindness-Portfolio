@@ -14,6 +14,7 @@ import {
   TakeawaysPanel,
   Icons,
 } from './CaseStudyParts';
+import { PROTOTYPES } from '@/lib/links';
 
 const SLUG = 'keyfund';
 
@@ -274,7 +275,7 @@ export default function KeyFundCaseStudy() {
           ))}
         </Reveal>
         <Reveal as="div">
-          <ProtoButton />
+          <ProtoButton href={PROTOTYPES[SLUG]} />
         </Reveal>
       </div>
 

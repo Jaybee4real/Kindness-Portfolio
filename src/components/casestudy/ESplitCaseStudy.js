@@ -12,6 +12,7 @@ import {
   DesignedFor,
   Icons,
 } from './CaseStudyParts';
+import { PROTOTYPES } from '@/lib/links';
 
 const SLUG = 'e-split';
 
@@ -342,7 +343,7 @@ export default function ESplitCaseStudy() {
           ))}
         </Reveal>
         <Reveal as="div">
-          <ProtoButton />
+          <ProtoButton href={PROTOTYPES[SLUG]} />
         </Reveal>
       </div>
 

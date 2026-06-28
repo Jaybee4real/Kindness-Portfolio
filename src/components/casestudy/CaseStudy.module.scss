@@ -117,6 +117,17 @@ $cs-meta: #4e5c7b;
   flex: 1;
 }
 
+.kickerRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.kickerLogo {
+  display: block;
+  flex-shrink: 0;
+}
+
 .kicker {
   display: inline-block;
   font-family: Arial, sans-serif;

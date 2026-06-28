@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Projects.module.scss';
 import Reveal from '../ui/Reveal';
+import ProjectLogo from '../ui/ProjectLogo';
 
 export default function ProjectCard({ project }) {
   return (
@@ -12,6 +13,11 @@ export default function ProjectCard({ project }) {
         aria-label={`View ${project.title} case study`}
       />
       <div className={styles.info}>
+        <ProjectLogo
+          slug={project.href.split('/').pop()}
+          height={44}
+          className={styles.logo}
+        />
         <h3 className={styles.title}>{project.title}</h3>
         <p className={styles.desc}>{project.desc}</p>
         <div className={styles.meta}>
