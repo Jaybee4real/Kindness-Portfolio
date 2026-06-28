@@ -994,10 +994,15 @@ $cs-meta: #4e5c7b;
 
 // ---- generic phone gallery rows ----
 .galleryFlex {
+  margin-top: 56px;
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
+
+  @include mobile {
+    margin-top: 36px;
+  }
 }
 
 .galleryFlex img {
