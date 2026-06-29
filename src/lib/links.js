@@ -7,11 +7,11 @@ export const LINKS = {
 
 export const PROTOTYPES = {
   update:
-    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11004-27720&viewport=189%2C1111%2C0.1&t=ocodF6wx3TszTqZw-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11004%3A24420&page-id=2%3A4',
+    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11004-24420&viewport=-144%2C2457%2C0.26&t=U3LRCBxCajLtIZyf-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11004%3A24420',
   'e-split':
-    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11012-12632&viewport=275%2C191%2C0.11&t=fvnaj1awgGLlmuNn-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11012%3A12334&page-id=2%3A6',
+    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11012-12334&viewport=275%2C191%2C0.11&t=U3LRCBxCajLtIZyf-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11012%3A12334',
   keyfund:
-    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=11020-9029&viewport=207%2C-642%2C1.36&t=fkn8EKdiEP9hHfQp-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11020%3A27894&page-id=2%3A5',
+    'https://www.figma.com/proto/5CTzpzYODGrQh6scLlMZBt/PORTFOLIO?node-id=2-5&p=f&viewport=165%2C57%2C0.38&t=U3LRCBxCajLtIZyf-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11020%3A27894',
 };
 
 export const LOGOS = {
