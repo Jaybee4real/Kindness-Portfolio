@@ -217,23 +217,16 @@ export default function ESplitCaseStudy() {
             moving forward.
           </p>
         </Split>
-        <Reveal className={styles.galleryFlex} as="div">
-          {[1, 2, 3, 4, 5, 6].map((n) => {
-            const intrinsicHeight = n <= 3 ? 1227 : n <= 5 ? 1285 : 1294;
-            return (
-              <Image
-                key={n}
-                src={`/images/work/${SLUG}/midfi-${n}.webp`}
-                alt=""
-                width={530}
-                height={intrinsicHeight}
-                style={{
-                  height: 460,
-                  width: Math.round((460 * 530) / intrinsicHeight),
-                }}
-              />
-            );
-          })}
+        <Reveal className={styles.wireframeGrid} as="div">
+          {[1, 2, 3, 4, 5, 6].map((n) => (
+            <Image
+              key={n}
+              src={`/images/work/${SLUG}/midfi-${n}.webp`}
+              alt=""
+              width={530}
+              height={n <= 3 ? 1227 : n <= 5 ? 1285 : 1294}
+            />
+          ))}
         </Reveal>
       </div>
 

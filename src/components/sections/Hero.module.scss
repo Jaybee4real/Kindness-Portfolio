@@ -20,25 +20,14 @@
 }
 
 .pill {
-  display: inline-flex;
-  align-items: center;
+  @include blue-pill;
   height: 52px;
-  padding: 0 23px;
-  border: 1px solid $bright-blue;
-  border-radius: 9999px;
-  background: $white;
+  padding: 0 22px;
   font-family: var(--font-geist);
-  font-weight: 500;
   font-size: 22px;
   line-height: 28.6px;
-  color: $bright-blue;
 
-  @include mobile {
-    height: 30px;
-    padding: 0 14px;
-    font-size: 12px;
-    line-height: 1;
-  }
+  @include pill-mobile;
 }
 
 .copy {

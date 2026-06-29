@@ -99,6 +99,10 @@ $cs-meta: #4e5c7b;
     width: 38%;
     flex-shrink: 0;
   }
+
+  @include mobile {
+    width: 66%;
+  }
 }
 
 .heroText {
@@ -519,13 +523,25 @@ $cs-meta: #4e5c7b;
   margin-bottom: 56px;
 }
 
-.grid4 {
+// Unified wireframe gallery used by every case study: a flexible responsive grid
+// (4 per row → 3 → 2) with fixed-aspect cells so every wireframe is the same size
+// regardless of the source screenshot's aspect ratio.
+.wireframeGrid {
+  margin-top: 56px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  align-items: start;
   gap: 28px;
 
   @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @include mobile {
+    margin-top: 36px;
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
@@ -543,8 +559,14 @@ $cs-meta: #4e5c7b;
   }
 }
 
-.grid4 img,
 .grid6 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.wireframeGrid img {
   width: 100%;
   height: auto;
   display: block;

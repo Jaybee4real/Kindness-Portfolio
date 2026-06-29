@@ -313,14 +313,14 @@ export default function UpdateCaseStudy() {
             </p>
           </div>
         </Reveal>
-        <Reveal className={styles.grid4} as="div">
+        <Reveal className={styles.wireframeGrid} as="div">
           {Array.from({ length: 8 }).map((_, index) => (
             <Image
               key={index}
               src={`/images/work/update/midfi-${index + 1}.webp`}
               alt=""
-              width={532}
-              height={1152}
+              width={551}
+              height={1198}
             />
           ))}
         </Reveal>

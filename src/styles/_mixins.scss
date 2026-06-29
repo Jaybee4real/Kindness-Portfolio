@@ -73,5 +73,38 @@
     padding: 0 14px;
     font-size: 12px;
     line-height: 1;
+
+    &::before {
+      width: 6px;
+      height: 6px;
+      box-shadow: 0 0 0 3px rgba($bright-blue, 0.16);
+    }
+  }
+}
+
+// Shared look for the blue label/status pills ("Available For Work", "Projects",
+// "Case Studies", …). Soft gradient fill, gentle elevation, and a glowing status
+// dot. Components keep their own height / padding / font-size.
+@mixin blue-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid rgba($bright-blue, 0.4);
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #ffffff 0%, #eaf2ff 100%);
+  box-shadow:
+    0 6px 16px rgba($bright-blue, 0.13),
+    inset 0 1px 0 #ffffff;
+  color: $bright-blue;
+  font-weight: 500;
+
+  &::before {
+    content: '';
+    flex-shrink: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $bright-blue;
+    box-shadow: 0 0 0 4px rgba($bright-blue, 0.16);
   }
 }

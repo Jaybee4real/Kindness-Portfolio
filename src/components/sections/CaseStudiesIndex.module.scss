@@ -13,17 +13,17 @@
 }
 
 .pill {
-  display: inline-flex;
-  align-items: center;
+  @include blue-pill;
   height: 36px;
-  padding: 0 18px;
-  border: 1px solid $bright-blue;
-  border-radius: 9999px;
+  padding: 0 16px;
   font-family: var(--font-brand);
-  font-weight: 500;
   font-size: 16px;
   line-height: 1;
-  color: $bright-blue;
+
+  &::before {
+    width: 7px;
+    height: 7px;
+  }
 
   @include pill-mobile;
 }

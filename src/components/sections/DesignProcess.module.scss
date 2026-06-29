@@ -14,18 +14,12 @@
 }
 
 .tag {
-  display: inline-flex;
-  align-items: center;
+  @include blue-pill;
   height: 44px;
-  padding: 0 24px;
-  border: 1px solid $bright-blue;
-  border-radius: 9999px;
-  background: $white;
+  padding: 0 22px;
   font-family: var(--font-geist);
-  font-weight: 500;
   font-size: 22px;
   line-height: 28.6px;
-  color: $bright-blue;
 
   @include pill-mobile;
 }

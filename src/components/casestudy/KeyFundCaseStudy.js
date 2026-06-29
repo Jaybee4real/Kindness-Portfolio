@@ -158,7 +158,7 @@ export default function KeyFundCaseStudy() {
             moving forward.
           </p>
         </Split>
-        <Reveal className={styles.galleryFlex} as="div">
+        <Reveal className={styles.wireframeGrid} as="div">
           {[1, 2, 3, 4, 5, 6, 7].map((n) => (
             <Image
               key={n}
@@ -166,10 +166,6 @@ export default function KeyFundCaseStudy() {
               alt=""
               width={532}
               height={MIDFI_HEIGHTS[n]}
-              style={{
-                height: 340,
-                width: Math.round((340 * 532) / MIDFI_HEIGHTS[n]),
-              }}
             />
           ))}
         </Reveal>
