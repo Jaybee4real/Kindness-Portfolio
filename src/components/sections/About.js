@@ -13,9 +13,9 @@ const STATS = [
     desc: 'Successfully launched, from clean one-pagers to complex, custom builds.',
   },
   {
-    number: '30+',
-    label: 'Projects',
-    desc: 'Successfully launched, from clean one-pagers to complex, custom builds.',
+    number: '7+',
+    label: 'Industries',
+    desc: 'Spanning Fintech, HealthTech, Real Estate, EduTech, B2B, HRM, and SaaS.',
   },
   {
     number: '98%',
